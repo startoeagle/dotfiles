@@ -17,12 +17,12 @@ end
 
 local indent = 4
 cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
-cmd 'set background=light'
+cmd 'set background=dark'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
-opt('o', 'completeopt', 'menuone')           -- Completion options (for compe)
+-- opt('o', 'completeopt', 'menuone')           -- Completion options (for compe)
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
 opt('o', 'ignorecase', true)                          -- Ignore case
 opt('o', 'joinspaces', false)                         -- No double spaces with join after a dot
@@ -31,7 +31,7 @@ opt('o', 'shiftround', true)                          -- Round indent
 opt('o', 'sidescrolloff', 8 )                         -- Columns of context
 opt('o', 'smartcase', true)                           -- Don't ignore case with capitals
 opt('o', 'termguicolors', true)                       -- True color support
-opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
+    -- opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
@@ -84,12 +84,8 @@ lsp.sumneko_lua.setup{
 }
 
 map('n', '<space>rc', '<cmd>e ~/.config/nvim/init.lua<cr>')
+map('n', '<space>cd', '<cmd>cd %:h<cr>')
 
--- g['vimspector_enable_mappings'] = 'HUMAN'
--- map('n', '<space>dd', ':call vimspector#Launch()<cr>')
--- map('n', '<space>db', ':call vimspector#ToggleBreakpoint()<cr>')
--- map('n', '<space>dr', ':call vimspector#RunToCursor()<cr>')
--- map('n', '<space>dc', ':call vimspector#Continue()<cr>')
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 map('n', '<space>dc', ':lua require[[dap]].continue()<cr>')
 map('n', '<space>db', ':lua require[[dap]].toggle_breakpoint()<cr>')
