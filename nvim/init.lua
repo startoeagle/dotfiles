@@ -17,12 +17,12 @@ end
 
 local indent = 4
 cmd 'colorscheme one'                             -- Put your favorite colorscheme here
-cmd 'set background=light'
+cmd 'set background=dark'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
--- opt('o', 'completeopt', 'menuone')           -- Completion options (for compe)
+opt('o', 'completeopt', 'menuone')           -- Completion options (for compe)
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
 opt('o', 'ignorecase', true)                          -- Ignore case
 opt('o', 'joinspaces', false)                         -- No double spaces with join after a dot
@@ -56,7 +56,7 @@ local lsp = require 'lspconfig'
 
 lsp.cmake.setup {on_attach = on_attach}
 lsp.tsserver.setup {on_attach = on_attach}
-lsp.rust_analyzer.setup {on_attach = on_attach, root_dir = lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
+lsp.rust_analyzer.setup { on_attach = on_attach, root_dir =lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
 lsp.ccls.setup {
     on_attach=on_attach,
