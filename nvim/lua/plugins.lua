@@ -7,6 +7,7 @@ use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 use {'neovim/nvim-lspconfig'}
 use 'hrsh7th/nvim-compe'
 use { 'morhetz/gruvbox' }
+use 'rakr/vim-one'
 use { 'tjdevries/nlua.nvim' }
 use {
   'nvim-telescope/telescope.nvim',

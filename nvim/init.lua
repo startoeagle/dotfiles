@@ -16,8 +16,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local indent = 4
-cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
-cmd 'set background=dark'
+cmd 'colorscheme one'                             -- Put your favorite colorscheme here
+cmd 'set background=light'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
@@ -58,7 +58,13 @@ lsp.cmake.setup {on_attach = on_attach}
 lsp.tsserver.setup {on_attach = on_attach}
 lsp.rust_analyzer.setup {on_attach = on_attach, root_dir = lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
-lsp.clangd.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach}
+lsp.ccls.setup {
+    on_attach=on_attach,
+    filetypes = {  'cuda' },
+}
+lsp.clangd.setup {
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
+}
 local sumneko_lua = '/home/anton/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/bin/Linux/lua-language-server'
 lsp.sumneko_lua.setup{
     cmd = {sumneko_lua},
