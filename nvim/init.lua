@@ -16,8 +16,9 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local indent = 4
-cmd 'colorscheme one'                             -- Put your favorite colorscheme here
-cmd 'set background=dark'
+cmd 'set termguicolors'
+cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
+cmd 'set background=light'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
@@ -48,7 +49,7 @@ local on_attach = function(hej, da)
     map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
     map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
-    print('in on_attach function')
+    print('LSP activated!')
 end
 local lsp = require 'lspconfig'
 
@@ -64,33 +65,52 @@ lsp.ccls.setup {
 }
 lsp.clangd.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
+    filetypes = { 'c', 'cpp' },
 }
-local sumneko_lua = '/home/anton/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/bin/Linux/lua-language-server'
-lsp.sumneko_lua.setup{
-    cmd = {sumneko_lua},
+
+-- An example of configuring for `sumneko_lua`,
+--  a language server for Lua.
+
+-- set the path to the sumneko installation
+local system_name = "Linux" -- (Linux, macOS, or Windows)
+local sumneko_root_path = '/home/anton/usefull-repos/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+require('lspconfig').sumneko_lua.setup({
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    -- An example of settings for an LSP server.
+    --    For more options, see nvim-lspconfig
     settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = vim.split(package.path, ';')
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-            }
-        }
+    Lua = {
+        runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = vim.split(package.path, ';'),
+        },
+        diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+        },
+        workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
+        },
     }
-}
+    },
+
+    on_attach = on_attach,
+})
 
 map('n', '<space>rc', '<cmd>e ~/.config/nvim/init.lua<cr>')
 map('n', '<space>cd', '<cmd>cd %:h<cr>')
+map('n', '<space><space>', '<cmd>noh<cr>')
+-- map('t', '<Esc>', '<C-\\><C-n>')
+cmd 'tnoremap <Esc> <C-\\><c-n>'
+
 
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 map('n', '<space>dc', ':lua require[[dap]].continue()<cr>')
