@@ -38,5 +38,7 @@ use {
 
 use { 'theHamsta/nvim-dap-virtual-text' }
 
+use 'DingDean/wgsl.vim'
+
 
 end)
