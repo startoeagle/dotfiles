@@ -22,7 +22,8 @@ use { 'tpope/vim-fugitive' }
 use { 'kabouzeid/nvim-lspinstall' }
 use { 'nvim-lua/lsp_extensions.nvim' }
 
-use {'SirVer/ultisnips'}
+-- use {'SirVer/ultisnips'}
+use 'hrsh7th/vim-vsnip'
 use {'honza/vim-snippets'}
 
 use {
@@ -40,5 +41,11 @@ use { 'theHamsta/nvim-dap-virtual-text' }
 
 use 'DingDean/wgsl.vim'
 
+use 'tikhomirov/vim-glsl'
+
+use { 'kkoomen/vim-doge',
+    cmd = {"DogeGenerate", "DogeCreateDocStandard"},
+    run = ":call doge#install()",
+}
 
 end)
