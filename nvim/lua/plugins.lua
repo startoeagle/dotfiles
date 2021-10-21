@@ -5,7 +5,14 @@ return require('packer').startup(function()
 use {'wbthomason/packer.nvim', opt = true}
 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 use {'neovim/nvim-lspconfig'}
-use 'hrsh7th/nvim-compe'
+
+use 'neovim/nvim-lspconfig'
+use 'hrsh7th/cmp-nvim-lsp'
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/nvim-cmp'
+use 'hrsh7th/cmp-vsnip'
+use 'hrsh7th/vim-vsnip'
+
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
 use { 'tjdevries/nlua.nvim' }
@@ -16,7 +23,6 @@ use {
 -- use { 'puremourning/vimspector' }
 use { 'mfussenegger/nvim-dap' }
 use { 'mfussenegger/nvim-dap-python' }
--- use { 'hrsh7th/nvim-compe' }
 use { 'tpope/vim-fugitive' }
 
 use { 'kabouzeid/nvim-lspinstall' }
