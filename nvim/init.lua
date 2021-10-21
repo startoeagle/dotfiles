@@ -18,7 +18,7 @@ end
 local indent = 4
 cmd 'set termguicolors'
 cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
-cmd 'set background=light'
+cmd 'set background=dark'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
@@ -110,6 +110,7 @@ map('n', '<space>cd', '<cmd>cd %:h<cr>')
 map('n', '<space><space>', '<cmd>noh<cr>')
 -- map('t', '<Esc>', '<C-\\><C-n>')
 cmd 'tnoremap <Esc> <C-\\><c-n>'
+cmd 'inoremap jk <Esc>'
 
 
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
