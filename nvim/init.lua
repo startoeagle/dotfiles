@@ -1,29 +1,15 @@
 require('plugins')
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
-local function opt(scope, key, value)
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
-end
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd') 
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
-
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
+require('common')
 local indent = 4
 cmd 'set termguicolors'
-cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
+cmd 'colorscheme one'                             -- Put your favorite colorscheme here
 cmd 'set background=dark'
+cmd 'set colorcolumn=81'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
-opt('o', 'completeopt', 'menuone')           -- Completion options (for compe)
+opt('o', 'completeopt', 'menu', 'menuone', 'noselect')           -- Completion options (for compe)
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
 opt('o', 'ignorecase', true)                          -- Ignore case
 opt('o', 'joinspaces', false)                         -- No double spaces with join after a dot
@@ -36,7 +22,6 @@ opt('o', 'termguicolors', true)                       -- True color support
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
-vim.g.dap_virtual_text = true
 
 local on_attach = function(hej, da) 
     map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
@@ -61,7 +46,7 @@ lsp.rust_analyzer.setup { on_attach = on_attach, root_dir =lsp.util.root_pattern
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
 lsp.ccls.setup {
     on_attach=on_attach,
-    filetypes = {  'cuda' },
+    filetypes = { 'cuda' },
 }
 lsp.clangd.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
@@ -73,7 +58,7 @@ lsp.clangd.setup {
 
 -- set the path to the sumneko installation
 local system_name = "Linux" -- (Linux, macOS, or Windows)
-local sumneko_root_path = '/home/anton/usefull-repos/lua-language-server'
+local sumneko_root_path = '$HOME'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup({
@@ -105,23 +90,36 @@ require('lspconfig').sumneko_lua.setup({
     on_attach = on_attach,
 })
 
-map('n', '<space>rc', '<cmd>e ~/.config/nvim/init.lua<cr>')
+map('n', '<space>rc', '<cmd>e $MYVIMRC<CR>')
 map('n', '<space>cd', '<cmd>cd %:h<cr>')
 map('n', '<space><space>', '<cmd>noh<cr>')
 -- map('t', '<Esc>', '<C-\\><C-n>')
 cmd 'tnoremap <Esc> <C-\\><c-n>'
 cmd 'inoremap jk <Esc>'
 
+local iron = require('iron')
 
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-map('n', '<space>dc', ':lua require[[dap]].continue()<cr>')
-map('n', '<space>db', ':lua require[[dap]].toggle_breakpoint()<cr>')
-map('n', '<space>ds', ':lua require[[dap]].step_over()<cr>')
-map('n', '<space>di', ':lua require[[dap]].step_into()<cr>')
-map('n', '<space>dr', ':lua require[[dap]].repl.open()<cr>')
-map('n', '<space>z', ':ZenMode<CR>', {silent = true})
+iron.core.add_repl_definitions {
+ -- python = {
+ --   mycustom = {
+ --     command = {"mycmd"}
+ --   }
+ -- },
+  clojure = {
+    lein_connect = {
+      command = {"lein", "repl", ":connect"}
+    }
+  }
+}
 
-map('i', '<C-Space>', 'compe#complete()', {silent = true, expr = true})
+iron.core.set_config {
+  preferred = {
+    python = "ipython",
+    clojure = "lein"
+  }
+}
+
 require('completion')
 require('treesitter-config')
 require('telescope-config')
+require('debug-config')

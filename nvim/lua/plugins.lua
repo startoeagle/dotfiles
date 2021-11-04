@@ -6,12 +6,14 @@ use {'wbthomason/packer.nvim', opt = true}
 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 use {'neovim/nvim-lspconfig'}
 
-use 'neovim/nvim-lspconfig'
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/cmp-vsnip'
 use 'hrsh7th/vim-vsnip'
+use {'honza/vim-snippets'}
+
+use 'tpope/vim-surround'
 
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
@@ -23,14 +25,16 @@ use {
 -- use { 'puremourning/vimspector' }
 use { 'mfussenegger/nvim-dap' }
 use { 'mfussenegger/nvim-dap-python' }
+use { 'theHamsta/nvim-dap-virtual-text' }
+use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+use 'hkupty/iron.nvim'
+use 'metakirby5/codi.vim'
+
 use { 'tpope/vim-fugitive' }
 
 use { 'kabouzeid/nvim-lspinstall' }
 use { 'nvim-lua/lsp_extensions.nvim' }
-
--- use {'SirVer/ultisnips'}
-use 'hrsh7th/vim-vsnip'
-use {'honza/vim-snippets'}
 
 use {
   "folke/zen-mode.nvim",
@@ -42,8 +46,6 @@ use {
     }
   end
 }
-
-use { 'theHamsta/nvim-dap-virtual-text' }
 
 use 'DingDean/wgsl.vim'
 
