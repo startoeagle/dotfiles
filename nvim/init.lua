@@ -1,20 +1,5 @@
 require('plugins')
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
-local function opt(scope, key, value)
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
-end
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd') 
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
-
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
+require('common')
 local indent = 4
 cmd 'set termguicolors'
 cmd 'colorscheme one'                             -- Put your favorite colorscheme here
@@ -137,4 +122,4 @@ iron.core.set_config {
 require('completion')
 require('treesitter-config')
 require('telescope-config')
-require('debug')
+require('debug-config')

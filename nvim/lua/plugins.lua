@@ -13,6 +13,8 @@ use 'hrsh7th/cmp-vsnip'
 use 'hrsh7th/vim-vsnip'
 use {'honza/vim-snippets'}
 
+use 'tpope/vim-surround'
+
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
 use { 'tjdevries/nlua.nvim' }
