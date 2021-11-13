@@ -68,6 +68,11 @@ lsp.clangd.setup {
     filetypes = { 'c', 'cpp' },
 }
 
+lsp.clojure_lsp.setup {
+    on_attach=on_attach,
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd()),
+}
+
 -- An example of configuring for `sumneko_lua`,
 --  a language server for Lua.
 
