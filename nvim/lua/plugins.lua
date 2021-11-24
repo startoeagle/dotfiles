@@ -18,11 +18,15 @@ use 'tpope/vim-surround'
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
 use { 'tjdevries/nlua.nvim' }
+
+
 use {
   'nvim-telescope/telescope.nvim',
   requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
 }
--- use { 'puremourning/vimspector' }
+
+use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
 use { 'mfussenegger/nvim-dap' }
 use { 'mfussenegger/nvim-dap-python' }
 use { 'theHamsta/nvim-dap-virtual-text' }

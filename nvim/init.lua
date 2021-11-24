@@ -18,12 +18,12 @@ opt('o', 'shiftround', true)                          -- Round indent
 opt('o', 'sidescrolloff', 8 )                         -- Columns of context
 opt('o', 'smartcase', true)                           -- Don't ignore case with capitals
 opt('o', 'termguicolors', true)                       -- True color support
-    -- opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
+-- opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
 
-local on_attach = function(hej, da) 
+local on_attach = function(hej, da)
     map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
     map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
     map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
@@ -49,7 +49,8 @@ lsp.ccls.setup {
     filetypes = { 'cuda' },
 }
 lsp.clangd.setup {
-    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'),
+    on_attach = on_attach,
     filetypes = { 'c', 'cpp' },
 }
 
