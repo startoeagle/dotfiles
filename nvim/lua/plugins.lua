@@ -60,4 +60,6 @@ use { 'kkoomen/vim-doge',
     run = ":call doge#install()",
 }
 
+use 'Olical/conjure'
+
 end)
