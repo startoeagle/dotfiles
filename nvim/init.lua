@@ -2,8 +2,8 @@ require('plugins')
 require('common')
 local indent = 4
 cmd 'set termguicolors'
-cmd 'colorscheme one'                             -- Put your favorite colorscheme here
-cmd 'set background=dark'
+cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
+cmd 'set background=light'
 cmd 'set colorcolumn=81'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
