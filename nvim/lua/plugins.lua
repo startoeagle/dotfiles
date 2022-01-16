@@ -9,14 +9,19 @@ use {'neovim/nvim-lspconfig'}
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/nvim-cmp'
-use 'hrsh7th/cmp-vsnip'
-use 'hrsh7th/vim-vsnip'
+use'hrsh7th/cmp-path'
+use'hrsh7th/cmp-cmdline'
+use 'SirVer/ultisnips'
+
+use 'quangnguyen30192/cmp-nvim-ultisnips'
 use {'honza/vim-snippets'}
 
 use 'tpope/vim-surround'
 
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
+use {'dracula/vim', as = 'dracula'}
+
 use { 'tjdevries/nlua.nvim' }
 use {
   'nvim-telescope/telescope.nvim',
