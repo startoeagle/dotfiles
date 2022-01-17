@@ -7,16 +7,19 @@ use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 use {'neovim/nvim-lspconfig'}
 
 use 'hrsh7th/cmp-nvim-lsp'
+use 'ray-x/lsp_signature.nvim'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/nvim-cmp'
-use 'hrsh7th/cmp-vsnip'
-use 'hrsh7th/vim-vsnip'
+use { 'L3MON4D3/LuaSnip' } 
+use { 'saadparwaiz1/cmp_luasnip' }
+
 use {'honza/vim-snippets'}
 
 use 'tpope/vim-surround'
 
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
+use { 'dracula/vim',  as = 'dracula' }
 use { 'tjdevries/nlua.nvim' }
 
 

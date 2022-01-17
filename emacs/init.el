@@ -40,5 +40,8 @@
 (with-eval-after-load 'ob
   ;; Optional for syntax highlight of napkin-puml src block.
   ;; (require 'plantuml)
-  (require 'ob-napkin))
+  (require 'ob-napkin)
+  (require 'ob-python)
+  )
 
+(setq default-tab-width 4)

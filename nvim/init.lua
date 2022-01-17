@@ -2,8 +2,8 @@ require('plugins')
 require('common')
 local indent = 4
 cmd 'set termguicolors'
-cmd 'colorscheme gruvbox'                             -- Put your favorite colorscheme here
-cmd 'set background=light'
+cmd 'colorscheme dracula'                             -- Put your favorite colorscheme here
+cmd 'set background=dark'
 cmd 'set colorcolumn=81'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
@@ -34,6 +34,8 @@ local on_attach = function(hej, da)
     map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
     map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
+    require "lsp_signature".on_attach() 
+
     print('LSP activated!')
 end
 local lsp = require 'lspconfig'
@@ -45,13 +47,14 @@ lsp.tsserver.setup {on_attach = on_attach}
 lsp.rust_analyzer.setup { on_attach = on_attach, root_dir =lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
 lsp.ccls.setup {
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.ccls', 'compile_commands.json'),
     on_attach=on_attach,
-    filetypes = { 'cuda' },
+    filetypes = { 'cuda', 'c' },
 }
 lsp.clangd.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'),
     on_attach = on_attach,
-    filetypes = { 'c', 'cpp' },
+    filetypes = { 'cpp' },
 }
 
 lsp.clojure_lsp.setup {
