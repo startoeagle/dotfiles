@@ -7,6 +7,7 @@ use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 use {'neovim/nvim-lspconfig'}
 
 use 'hrsh7th/cmp-nvim-lsp'
+use 'ray-x/lsp_signature.nvim'
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/nvim-cmp'
 use'hrsh7th/cmp-path'
@@ -20,14 +21,18 @@ use 'tpope/vim-surround'
 
 use { 'morhetz/gruvbox' }
 use 'rakr/vim-one'
-use {'dracula/vim', as = 'dracula'}
+use { 'dracula/vim',  as = 'dracula' }
 
 use { 'tjdevries/nlua.nvim' }
+
+
 use {
   'nvim-telescope/telescope.nvim',
   requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
 }
--- use { 'puremourning/vimspector' }
+
+use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
 use { 'mfussenegger/nvim-dap' }
 use { 'mfussenegger/nvim-dap-python' }
 use { 'theHamsta/nvim-dap-virtual-text' }

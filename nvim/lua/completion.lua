@@ -1,4 +1,5 @@
 -- Setup nvim-cmp.
+
 local cmp = require'cmp'
 
 cmp.setup({
@@ -104,5 +105,3 @@ for _, server in pairs(servers) do
     }
 
 end
-
-
