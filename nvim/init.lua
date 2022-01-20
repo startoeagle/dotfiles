@@ -18,12 +18,12 @@ opt('o', 'shiftround', true)                          -- Round indent
 opt('o', 'sidescrolloff', 8 )                         -- Columns of context
 opt('o', 'smartcase', true)                           -- Don't ignore case with capitals
 opt('o', 'termguicolors', true)                       -- True color support
-    -- opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
+-- opt('o', 'wildmode', 'list:longest')                  -- Command-line completion mode
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 opt('w', 'relativenumber', true)                      -- Relative line numbers
 
-local on_attach = function(hej, da) 
+local on_attach = function(hej, da)
     map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
     map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
     map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
@@ -33,6 +33,8 @@ local on_attach = function(hej, da)
     map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
     map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
     map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+
+    require "lsp_signature".on_attach() 
 
     print('LSP activated!')
 end
@@ -44,10 +46,15 @@ lsp.cmake.setup {on_attach = on_attach}
 lsp.tsserver.setup {on_attach = on_attach}
 lsp.rust_analyzer.setup { on_attach = on_attach, root_dir =lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
-lsp.ccls.setup { on_attach=on_attach, filetypes = { 'cuda' }, }
+lsp.ccls.setup {
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.ccls', 'compile_commands.json'),
+    on_attach=on_attach,
+    filetypes = { 'cuda', 'c' },
+}
 lsp.clangd.setup {
-    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
-    filetypes = { 'c', 'cpp' },
+    root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'),
+    on_attach = on_attach,
+    filetypes = { 'cpp' },
 }
 
 lsp.clojure_lsp.setup {
