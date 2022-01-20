@@ -2,7 +2,7 @@ require('plugins')
 require('common')
 local indent = 4
 cmd 'set termguicolors'
-cmd 'colorscheme one'                             -- Put your favorite colorscheme here
+cmd 'colorscheme dracula'                             -- Put your favorite colorscheme here
 cmd 'set background=dark'
 cmd 'set colorcolumn=81'
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
@@ -44,10 +44,7 @@ lsp.cmake.setup {on_attach = on_attach}
 lsp.tsserver.setup {on_attach = on_attach}
 lsp.rust_analyzer.setup { on_attach = on_attach, root_dir =lsp.util.root_pattern('.git', 'Cargo.toml', fn.getcwd())}
 lsp.pylsp.setup {root_dir = lsp.util.root_pattern('env', '.git', fn.getcwd()), on_attach = on_attach}
-lsp.ccls.setup {
-    on_attach=on_attach,
-    filetypes = { 'cuda' },
-}
+lsp.ccls.setup { on_attach=on_attach, filetypes = { 'cuda' }, }
 lsp.clangd.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd(), '.clangd'), on_attach = on_attach,
     filetypes = { 'c', 'cpp' },
@@ -58,6 +55,20 @@ lsp.clojure_lsp.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd()),
 }
 
+lsp.hls.setup {
+    on_attach=on_attach,
+    root_dir = lsp.util.root_pattern('day5.cabal', '.git', fn.getcwd()),
+}
+
+lsp.arduino_language_server.setup {
+    on_attach=on_attach,
+    cmd = { 'arduino-language-server', '-clangd',  '/usr/local/clangd' , '-cli',
+    '$HOME/.local/bin/arduino-cli' , '-cli-config', '$HOME/.arduino15/arduino-cli.yaml' ,
+    '-fqbn' ,'arduino:mbed:nanorp2040connect' },
+    filetypes = { 'arduino' },
+    root_dir = lsp.util.root_pattern ('*.ino'),
+}
+
 -- An example of configuring for `sumneko_lua`,
 --  a language server for Lua.
 
@@ -66,34 +77,34 @@ local system_name = "Linux" -- (Linux, macOS, or Windows)
 local sumneko_root_path = '$HOME'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
-require('lspconfig').sumneko_lua.setup({
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-    -- An example of settings for an LSP server.
-    --    For more options, see nvim-lspconfig
-    settings = {
-    Lua = {
-        runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = vim.split(package.path, ';'),
-        },
-        diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-        },
-        workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
-        },
-    }
-    },
-
-    on_attach = on_attach,
-})
+--require('lspconfig').sumneko_lua.setup({
+--    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+--    -- An example of settings for an LSP server.
+--    --    For more options, see nvim-lspconfig
+--    settings = {
+--    Lua = {
+--        runtime = {
+--        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--        version = 'LuaJIT',
+--        -- Setup your lua path
+--        path = vim.split(package.path, ';'),
+--        },
+--        diagnostics = {
+--        -- Get the language server to recognize the `vim` global
+--        globals = {'vim'},
+--        },
+--        workspace = {
+--        -- Make the server aware of Neovim runtime files
+--        library = {
+--            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+--            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+--        },
+--        },
+--    }
+--    },
+--
+--    on_attach = on_attach,
+--})
 
 map('n', '<space>rc', '<cmd>e $MYVIMRC<CR>')
 map('n', '<space>cd', '<cmd>cd %:h<cr>')
