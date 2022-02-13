@@ -1,6 +1,9 @@
 theme = "dracula"
+[keys.normal]
+r = { c  = ":open ~/.config/helix/config.toml"} # Maps the Control-o to opening of the helix config file
+
 [keys.insert]
 j = {k = "normal_mode"}
-r = { c  = ":open ~/.config/helix/config.toml"} # Maps the Control-o to opening of the helix config file
+
 [editor]
 line-number = "relative"

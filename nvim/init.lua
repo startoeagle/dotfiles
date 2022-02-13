@@ -69,9 +69,9 @@ lsp.hls.setup {
 
 lsp.arduino_language_server.setup {
     on_attach=on_attach,
-    cmd = { 'arduino-language-server', '-clangd',  '/usr/local/clangd' , '-cli',
-    '$HOME/.local/bin/arduino-cli' , '-cli-config', '$HOME/.arduino15/arduino-cli.yaml' ,
-    '-fqbn' ,'arduino:mbed:nanorp2040connect' },
+    cmd = { 'arduino-language-server', '-clangd',  '/usr/bin/clangd' , '-cli',
+    '/usr/local/bin/arduino-cli' , '-cli-config', '$HOME/.arduino15/arduino-cli.yaml' ,
+    '-fqbn' ,'arduino:avr:uno' },
     filetypes = { 'arduino' },
     root_dir = lsp.util.root_pattern ('*.ino'),
 }
