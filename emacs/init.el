@@ -1,6 +1,7 @@
 (require 'package)
 (add-to-list 'package-archives				  
- 	     '("emlpa" . "https://melpa.org/packages/"))
+ 	     '("melpa" . "https://melpa.org/packages/"))
+
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
