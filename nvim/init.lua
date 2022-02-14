@@ -62,6 +62,20 @@ lsp.clojure_lsp.setup {
     root_dir = lsp.util.root_pattern('.git', fn.getcwd()),
 }
 
+lsp.hls.setup {
+    on_attach=on_attach,
+    root_dir = lsp.util.root_pattern('day5.cabal', '.git', fn.getcwd()),
+}
+
+lsp.arduino_language_server.setup {
+    on_attach=on_attach,
+    cmd = { 'arduino-language-server', '-clangd',  '/usr/bin/clangd' , '-cli',
+    '/usr/local/bin/arduino-cli' , '-cli-config', '$HOME/.arduino15/arduino-cli.yaml' ,
+    '-fqbn' ,'arduino:avr:uno' },
+    filetypes = { 'arduino' },
+    root_dir = lsp.util.root_pattern ('*.ino'),
+}
+
 -- An example of configuring for `sumneko_lua`,
 --  a language server for Lua.
 
