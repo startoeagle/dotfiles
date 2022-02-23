@@ -16,7 +16,7 @@ args = ["start"]
 [language.c_cpp]
 filetypes = ["c", "cpp"]
 roots = ["compile_commands.json", ".clangd", ".git", ".hg"]
-command = "clangd"
+command = "ccls"
 
 [language.crystal]
 filetypes = ["crystal"]
@@ -245,9 +245,11 @@ filetypes = ["python"]
 roots = ["requirements.txt", "setup.py", ".git", ".hg"]
 command = "pylsp"
 settings_section = "_"
-[language.python.settings._]
+[language.python.settings]
 # See https://github.com/python-lsp/python-lsp-server#configuration
-# pylsp.configurationSources = ["flake8"]
+pylsp.configurationSources = ["flake8"]
+pylsp.plugins.flake8.enabled = true
+pylsp.plugins.flake8.ignore = ["E203", "E266", "E501", "W503", "W391"]
 
 [language.r]
 filetypes = ["r"]
