@@ -14,7 +14,7 @@ command = "bash-language-server"
 args = ["start"]
 
 [language.c_cpp]
-filetypes = ["c", "cpp"]
+filetypes = ["c", "cpp", "cuda"]
 roots = ["compile_commands.json", ".clangd", ".git", ".hg"]
 command = "ccls"
 
@@ -244,7 +244,7 @@ intelephense.storagePath = "/tmp/intelephense"
 filetypes = ["python"]
 roots = ["requirements.txt", "setup.py", ".git", ".hg"]
 command = "pylsp"
-settings_section = "_"
+settings_section = "pylsp"
 [language.python.settings]
 # See https://github.com/python-lsp/python-lsp-server#configuration
 pylsp.configurationSources = ["flake8"]
