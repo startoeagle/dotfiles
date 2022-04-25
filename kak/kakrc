@@ -62,29 +62,26 @@ map global user c %{: edit ~/.config/kak/kakrc <ret>} -docstring "Goto kakrc"
 map global user f %{: fzf-mode<ret>} -docstring "Enter fzf commands"
 map global user v %{: tmux-terminal-horizontal kak -c %val{session} <ret>} -docstring "New split to the right"
 
-colorscheme dracula
+colorscheme gruvbox-light
 
 hook global InsertChar k %{ try %{
       exec -draft hH <a-k>jk<ret> d
         exec <esc>
 }}
+
 hook global WinSetOption filetype=python expandtab
 hook global WinSetOption filetype=python smarttab
 
 # evaluate-commands %sh{
-#     for filetype in c cpp rust java; do
-#         printf "%s\n" "add-highlighter shared/$filetype/code/functions    regex (\w*?)\b(for|if|while)?(\h+)?(?=\() 1:function
-#                        add-highlighter shared/$filetype/code/struct_field regex ((?<!\.\.)(?<=\.)|(?<=->))[a-zA-Z](\w+)?\b(?![>\"\(]) 0:rgb:fb4934,default+b
-#                        add-highlighter shared/$filetype/code/method       regex ((?<!\.\.)(?<=\.)|(?<=->))[a-zA-Z](\w+)?(\h+)?(?=\() 0:function
-#                        add-highlighter shared/$filetype/code/return       regex \breturn\b 0:rgb:fb4934,default+b"
-#     done
-#     for filetype in c cpp; do
-#         printf "%s\n" "add-highlighter shared/$filetype/code/types_1 regex \b(v|u|vu)\w+(8|16|32|64)(_t)?\b 0:type
-#                        add-highlighter shared/$filetype/code/types_2 regex \b(v|u|vu)?(_|__)?(s|u)(8|16|32|64)(_t)?\b 0:type
-#                        add-highlighter shared/$filetype/code/types_3 regex \b(v|u|vu)(_|__)?(int|short|char|long)(_t)?\b 0:type
-#                        add-highlighter shared/$filetype/code/types_4 regex \b\w+_t\b 0:type"
-#     done
-#     for filetype in cpp rust; do
-#         printf "%s\n" "add-highlighter shared/$filetype/code/  regex [a-zA-Z](\w+)?(\h+)?(?=::) 0:rgb:be8019,default"
+#     config_files="
+#         languages.kak
+#     "
+#     for file in $config_files; do
+#         printf "%s\n" "try %{
+#             source '$HOME/.config/kak/$file'
+#         } catch %{
+#             try %{ echo \"%val{error}\" } catch { echo 'Error sourcing $file' }
+#         }"
 #     done
 # }
+
