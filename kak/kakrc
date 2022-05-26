@@ -17,6 +17,11 @@ plug "andreyorst/powerline.kak" defer powerline_gruvbox %{
         powerline-start
 }
 
+plug "alexherbo2/auto-pairs.kak" config %{
+    set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` ` “ ” ‘ ’ « » ‹ ›
+    enable-auto-pairs
+}
+
 set global tabstop 4
 set global indentwidth 4
 plug "andreyorst/smarttab.kak" defer smarttab %{
@@ -47,7 +52,8 @@ hook global WinSetOption filetype=rust %{
         remove-hooks window rust-inlay-hints
     }
 }
-hook global WinSetOption filetype=<language> %{
+
+hook global WinSetOption filetype=(rust|python|c|cpp) %{
     hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
     hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
     hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
@@ -57,31 +63,13 @@ hook global WinSetOption filetype=<language> %{
 }
 
 map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
-
 map global user c %{: edit ~/.config/kak/kakrc <ret>} -docstring "Goto kakrc"
 map global user f %{: fzf-mode<ret>} -docstring "Enter fzf commands"
 map global user v %{: tmux-terminal-horizontal kak -c %val{session} <ret>} -docstring "New split to the right"
 
-colorscheme gruvbox-light
+colorscheme gruvbox-dark
 
 hook global InsertChar k %{ try %{
       exec -draft hH <a-k>jk<ret> d
         exec <esc>
 }}
-
-hook global WinSetOption filetype=python expandtab
-hook global WinSetOption filetype=python smarttab
-
-# evaluate-commands %sh{
-#     config_files="
-#         languages.kak
-#     "
-#     for file in $config_files; do
-#         printf "%s\n" "try %{
-#             source '$HOME/.config/kak/$file'
-#         } catch %{
-#             try %{ echo \"%val{error}\" } catch { echo 'Error sourcing $file' }
-#         }"
-#     done
-# }
-
