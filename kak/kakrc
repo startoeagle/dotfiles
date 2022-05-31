@@ -11,10 +11,12 @@ plug "kak-lsp/kak-lsp" do %{
 }
 
 plug "andreyorst/fzf.kak"
-plug "andreyorst/powerline.kak" defer powerline_gruvbox %{
-        powerline-theme default
+plug "andreyorst/powerline.kak"  defer powerline %{
+    powerline-separator global triangle
+} defer powerline_gruvbox %{
+    powerline-theme gruvbox
 } config %{
-        powerline-start
+    powerline-start
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
@@ -73,3 +75,8 @@ hook global InsertChar k %{ try %{
       exec -draft hH <a-k>jk<ret> d
         exec <esc>
 }}
+
+
+hook global WinSetOption filetype=(markdown|txt|org) %{
+    add-highlighter buffer/ wrap -width 120 -indent -word
+}
