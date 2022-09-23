@@ -8,13 +8,18 @@ evaluate-commands %sh{
 plug "andreyorst/plug.kak" noload
 plug "kak-lsp/kak-lsp" do %{
         cargo install --locked --force --path .
+} config %{
+    define-command lsp-restart %{ 
+        lsp-stop
+        lsp-start
+    }
 }
 
 plug "andreyorst/fzf.kak"
 plug "andreyorst/powerline.kak"  defer powerline %{
-    powerline-separator global triangle
+    powerline-separator global none
 } defer powerline_gruvbox %{
-    powerline-theme gruvbox
+    powerline-theme default
 } config %{
     powerline-start
 }
@@ -38,12 +43,27 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
             hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
-
+plug "h-youhei/kakoune-surround" config %{
+    declare-user-mode surround
+    map global surround s %{: surround<ret>} -docstring "surround"
+    map global surround c %{: change-surround<ret>} -docstring "change"
+    map global surround d %{: delete-surround<ret>} -docstring "delete"
+    map global surround t %{: select-surrounding-tag<ret>} -docstring "select tag"
+    map global user m %{: enter-user-mode surround<ret>} -docstring "Surround mode"
+}
+  
 # add-highlighter global/ show-whitespaces 
 add-highlighter global/ number-lines -relative
 
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
         lsp-enable-window
+        lsp-auto-signature-help-enable
+}
+
+hook global WinSetOption filetype=(c|cpp) %{
+    set buffer tabstop 2
+    set buffer indentwidth 2
+    set-option buffer softtabstop 2
 }
 
 hook global WinSetOption filetype=rust %{
@@ -69,14 +89,14 @@ map global user c %{: edit ~/.config/kak/kakrc <ret>} -docstring "Goto kakrc"
 map global user f %{: fzf-mode<ret>} -docstring "Enter fzf commands"
 map global user v %{: tmux-terminal-horizontal kak -c %val{session} <ret>} -docstring "New split to the right"
 
-colorscheme gruvbox-dark
+colorscheme dracula
+set-face global LineNumbers value
+set-face global comment yellow
 
 hook global InsertChar k %{ try %{
       exec -draft hH <a-k>jk<ret> d
         exec <esc>
 }}
-
-
 hook global WinSetOption filetype=(markdown|txt|org) %{
     add-highlighter buffer/ wrap -width 120 -indent -word
 }

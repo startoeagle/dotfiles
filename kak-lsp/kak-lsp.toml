@@ -13,6 +13,11 @@ roots = [".git", ".hg"]
 command = "bash-language-server"
 args = ["start"]
 
+[language.cmake]
+filetypes = ["cmake"]
+roots = [".git", "CMakeLists.txt"]
+command = "cmake-language-server"
+
 [language.c_cpp]
 filetypes = ["c", "cpp", "cuda"]
 roots = ["compile_commands.json", ".clangd", ".git", ".hg"]

@@ -2,6 +2,7 @@ require('plugins')
 require('common')
 local indent = 4
 cmd 'set termguicolors'
+cmd 'set mouse=a'
 cmd 'colorscheme dracula'                             -- Put your favorite colorscheme here
 cmd 'set background=dark'
 cmd 'set colorcolumn=81'
