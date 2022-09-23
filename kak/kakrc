@@ -14,6 +14,13 @@ plug "kak-lsp/kak-lsp" do %{
         lsp-start
     }
 }
+plug "eraserhd/parinfer-rust" do %{
+    cargo install --force --path .
+} config %{
+    hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
+        parinfer-enable-window -smart
+    }
+}
 
 plug "andreyorst/fzf.kak"
 plug "andreyorst/powerline.kak"  defer powerline %{
@@ -51,6 +58,9 @@ plug "h-youhei/kakoune-surround" config %{
     map global surround t %{: select-surrounding-tag<ret>} -docstring "select tag"
     map global user m %{: enter-user-mode surround<ret>} -docstring "Surround mode"
 }
+plug "lePerdu/kakboard" %{
+        hook global WinCreate .* %{ kakboard-enable }
+}
   
 # add-highlighter global/ show-whitespaces 
 add-highlighter global/ number-lines -relative
@@ -58,6 +68,7 @@ add-highlighter global/ number-lines -relative
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
         lsp-enable-window
         lsp-auto-signature-help-enable
+        map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
 }
 
 hook global WinSetOption filetype=(c|cpp) %{
