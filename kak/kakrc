@@ -62,10 +62,9 @@ plug "lePerdu/kakboard" %{
         hook global WinCreate .* %{ kakboard-enable }
 }
   
-# add-highlighter global/ show-whitespaces 
 add-highlighter global/ number-lines -relative
 
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|zig) %{
         lsp-enable-window
         lsp-auto-signature-help-enable
         map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
@@ -86,7 +85,7 @@ hook global WinSetOption filetype=rust %{
     }
 }
 
-hook global WinSetOption filetype=(rust|python|c|cpp) %{
+hook global WinSetOption filetype=(rust|python|c|cpp|zig) %{
     hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
     hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
     hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
