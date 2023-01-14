@@ -7,6 +7,12 @@ verbosity = 2
 # set to 0 to disable
 timeout = 1800 # seconds = 30 minutes
 
+[language.arduino]
+filetypes = ["arduino"]
+roots = ["compile_commands.json", ".clangd", ".git"]
+command = "/home/anton/go/bin/arduino-language-server"
+args = ["-clangd", "/usr/bin/clangd", "-cli", "/usr/bin/arduino-cli", "-cli-config", "/home/anton/.arduino15/arduino-cli.yaml", "-fqbn", "arduino:avr:uno"]
+
 [language.bash]
 filetypes = ["sh"]
 roots = [".git", ".hg"]
