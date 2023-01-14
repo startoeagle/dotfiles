@@ -94,12 +94,25 @@ hook global WinSetOption filetype=(rust|python|c|cpp|zig) %{
     }
 }
 
+declare-user-mode config
+map global config c %{: edit ~/.config/kak/kakrc <ret>} -docstring "Goto kakrc"
+map global config l %{: edit ~/.config/kak-lsp/kak-lsp.toml <ret>} -docstring "Goto kak-lsp"
+
 map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
-map global user c %{: edit ~/.config/kak/kakrc <ret>} -docstring "Goto kakrc"
+map global user c %{: enter-user-mode config<ret>} -docstring "Configs"
 map global user f %{: fzf-mode<ret>} -docstring "Enter fzf commands"
 map global user v %{: tmux-terminal-horizontal kak -c %val{session} <ret>} -docstring "New split to the right"
+map global user k :comment-line<ret> -docstring "Comment selection"
 
-colorscheme dracula
+# remap @ to visual mode
+map global normal @ v
+
+declare-user-mode sel
+map global sel a %{<a-a>} -docstring "Select around"
+map global sel i %{<a-i>} -docstring "Select inner"
+map global normal v %{: enter-user-mode sel<ret>}
+
+colorscheme mygruvbox
 set-face global LineNumbers value
 set-face global comment yellow
 
