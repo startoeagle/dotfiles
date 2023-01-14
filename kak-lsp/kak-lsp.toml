@@ -27,7 +27,7 @@ command = "cmake-language-server"
 [language.c_cpp]
 filetypes = ["c", "cpp", "cuda"]
 roots = ["compile_commands.json", ".clangd", ".git", ".hg"]
-command = "ccls"
+command = "clangd"
 
 [language.crystal]
 filetypes = ["crystal"]
