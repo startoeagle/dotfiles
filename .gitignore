@@ -1,2 +1,9 @@
 kak/plugins
 kak/.fzf-projects
+emacs/.emacs.d/*cache*
+emacs/.emacs.d/elpa/*
+*.so
+emacs/*\~
+\#*\#
+kak/rc/
+

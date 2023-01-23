@@ -1,0 +1,73 @@
+* Apperance
+#+begin_src elisp
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+end_src
+* UI help
+#+begin_src elisp
+  (use-package which-key
+     :init (which-key-mode))
+#+end_src
+
+#+RESULTS:
+
+* Evil
+#+begin_src elisp
+(use-package evil
+  :init (evil-mode))
+#+end_src
+* Programming and LSP
+#+begin_src elisp
+  (use-package eglot
+    :hook '(python-mode-hook))
+#+end_src
+** Kotlin
+#+begin_src elisp
+  (use-package kotlin-mode
+    :mode ("\\.kt\\'" . kotlin-mode))
+#+end_src
+** Lisp
+#+begin_src elisp
+  (use-package sly)
+#+end_src
+
+#+RESULTS:
+
+* Babel for org mode
+
+Do not ask if the code should be evaulated
+#+begin_src elisp
+  (defun my-org-confirm-babel-evaluate (lang body)
+   (not (string= lang "ditaa")))  ;don't ask for ditaa
+  (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+#+end_src
+
+#+RESULTS:
+: my-org-confirm-babel-evaluate
+
+#+begin_src elisp
+  (use-package ob-kotlin)
+  (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((python . t)
+	(kotlin . t)))
+#+end_src
+
+#+RESULTS:
+
+** Some tests for kotlin
+#+begin_src python :exports all 
+  return ("hello")
+#+end_src
+
+#+RESULTS:
+: hello
+
+#+begin_src kotlin
+  val s = 1 + 1
+  println("Hello, world ${s}")
+#+end_src
+
+#+RESULTS:
+: Hello, world 2
+: res9: kotlin.String = >>> 
