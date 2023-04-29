@@ -190,6 +190,11 @@ args = [
 # Other options, see https://github.com/julia-vscode/LanguageServer.jl/blob/master/src/requests/workspace.jl
 # "julia.lint.run" = "true"
 
+[language.kotlin]
+filetypes = ["kotlin"]
+roots = [".git", "pom.xml"]
+command = "kotlin-language-server"
+
 [language.latex]
 filetypes = ["latex"]
 roots = [".git", ".hg"]

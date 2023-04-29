@@ -43,7 +43,7 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
      set-option global softtabstop 4
      } config %{
             # these languages will use `expandtab' behavior, uses spaces for everything
-            hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl|python) expandtab
+            hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl|pythone|elixir) expandtab
             # these languages will use `noexpandtab' behavior
             hook global WinSetOption filetype=(makefile|gas) noexpandtab
             # these languages will use `smarttab' behavior
@@ -64,7 +64,7 @@ plug "lePerdu/kakboard" %{
   
 add-highlighter global/ number-lines -relative
 
-hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|zig) %{
+hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
         lsp-enable-window
         lsp-auto-signature-help-enable
         map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
@@ -122,4 +122,7 @@ hook global InsertChar k %{ try %{
 }}
 hook global WinSetOption filetype=(markdown|txt|org) %{
     add-highlighter buffer/ wrap -width 120 -indent -word
+}
+hook global BufCreate .*\.(ino)$ %{
+    set-option buffer filetype arduino
 }

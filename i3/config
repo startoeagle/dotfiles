@@ -187,8 +187,8 @@ bar {
         status_command i3status
 }
 
-exec setxkbmap -layout us,se
-exec setxkbmap -option grp\:alt_shift_toggle
+exec setxkbmap -layout us,sv
+exec setxkbmap -option "grp\:alt_shift_toggle"
 
 bindsym $mod+u exec i3lock -c 505050
 
