@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/anton/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/anton/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/anton/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -108,6 +113,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/anton/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["parinfer-rust"] = {
+    loaded = true,
+    path = "/home/anton/.local/share/nvim/site/pack/packer/start/parinfer-rust",
+    url = "https://github.com/eraserhd/parinfer-rust"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -134,6 +144,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/anton/.local/share/nvim/site/pack/packer/start/which-key.nvim",
     url = "https://github.com/folke/which-key.nvim"
+  },
+  ["zen-mode.nvim"] = {
+    loaded = true,
+    path = "/home/anton/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
+    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 
