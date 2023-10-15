@@ -25,6 +25,8 @@ require('packer').startup(function()
   use 'Olical/conjure'
   use {'eraserhd/parinfer-rust', run='! cargo build --release'}
 
+  use 'mg979/vim-visual-multi'
+
   use {
   "folke/which-key.nvim",
   config = function()
