@@ -10,6 +10,14 @@ require('packer').startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig'
 
+  use {'hrsh7th/nvim-cmp',
+     requires = {
+          'hrsh7th/cmp-nvim-lsp',
+          'hrsh7th/cmp-buffer',
+          'hrsh7th/cmp-path',
+          'hrsh7th/cmp-cmdline'
+      }
+    }
   -- Treesitter for better syntax highlighting
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 

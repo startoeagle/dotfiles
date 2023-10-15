@@ -14,6 +14,7 @@ require('lsp_signature').setup()
 require('zen')
 require('find')
 require('lsp')
+require('comp')
 require('tree-sitter')
 require('which-key').setup {}
 require('info')
