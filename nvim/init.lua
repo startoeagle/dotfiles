@@ -6,6 +6,7 @@ vim.cmd [[
 
 -- Use the leader key for key mappings
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 require('plugin') -- Packer.nvim setup
 require('basic')
