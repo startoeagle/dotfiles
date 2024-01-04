@@ -10,6 +10,8 @@ require('packer').startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig'
 
+  use 'lewis6991/gitsigns.nvim'
+
   use {'hrsh7th/nvim-cmp',
      requires = {
           'hrsh7th/cmp-nvim-lsp',
