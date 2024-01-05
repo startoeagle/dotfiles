@@ -4,6 +4,7 @@ local lspconfig = require('lspconfig')
 -- Configure LSP servers
 lspconfig.racket_langserver.setup{}
 lspconfig.pyright.setup{}
+lspconfig.lua_ls.setup{}
 -- lspconfig.black.setup{}
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

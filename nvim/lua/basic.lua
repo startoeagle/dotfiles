@@ -30,4 +30,21 @@ vim.api.nvim_set_keymap('n', '<leader>cr', ':e $HOME/.config/nvim/init.lua<cr>',
 -- Map key to change current working directory
 vim.api.nvim_set_keymap('n', '<leader>cd', ':lcd %:p:h<cr>', { noremap = true, silent = true })
 
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
 
+-- then setup your lsp server as usual
+local lspconfig = require('lspconfig')
+
+-- example to setup lua_ls and enable call snippets
+lspconfig.lua_ls.setup({
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace"
+      }
+    }
+  }
+})

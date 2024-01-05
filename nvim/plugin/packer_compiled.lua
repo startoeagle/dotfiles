@@ -119,6 +119,21 @@ _G.packer_plugins = {
     path = "/Users/anton.karlsson/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
   },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/anton.karlsson/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
+  neotest = {
+    loaded = true,
+    path = "/Users/anton.karlsson/.local/share/nvim/site/pack/packer/start/neotest",
+    url = "https://github.com/nvim-neotest/neotest"
+  },
+  ["neotest-python"] = {
+    loaded = true,
+    path = "/Users/anton.karlsson/.local/share/nvim/site/pack/packer/start/neotest-python",
+    url = "https://github.com/nvim-neotest/neotest-python"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/anton.karlsson/.local/share/nvim/site/pack/packer/start/nvim-cmp",
