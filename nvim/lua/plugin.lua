@@ -10,6 +10,20 @@ require('packer').startup(function()
   -- LSP
   use 'neovim/nvim-lspconfig'
 
+  use {
+  "nvim-neotest/neotest",
+  "nvim-neotest/neotest-python",
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter"
+  }
+}
+
+  use 'folke/neodev.nvim'
+
+  use 'lewis6991/gitsigns.nvim'
+
   use {'hrsh7th/nvim-cmp',
      requires = {
           'hrsh7th/cmp-nvim-lsp',

@@ -9,8 +9,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
 require('plugin') -- Packer.nvim setup
+
 require('basic')
+require('repl')
 require('lsp_signature').setup()
+require('git')
 require('zen')
 require('find')
 require('lsp')
@@ -19,3 +22,4 @@ require('tree-sitter')
 require('which-key').setup {}
 require('info')
 require('fsharp')
+require('testing')
