@@ -30,4 +30,7 @@ vim.api.nvim_set_keymap('n', '<leader>cr', ':e $HOME/.config/nvim/init.lua<cr>',
 -- Map key to change current working directory
 vim.api.nvim_set_keymap('n', '<leader>cd', ':lcd %:p:h<cr>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>y', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
+
 

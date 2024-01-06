@@ -18,3 +18,4 @@ require('comp')
 require('tree-sitter')
 require('which-key').setup {}
 require('info')
+require('fsharp')

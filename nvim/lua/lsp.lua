@@ -3,6 +3,8 @@ local lspconfig = require('lspconfig')
 
 -- Configure LSP servers
 lspconfig.racket_langserver.setup{}
+lspconfig.fsautocomplete.setup{}
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
