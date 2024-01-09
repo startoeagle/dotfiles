@@ -1,5 +1,19 @@
+require("neodev").setup({
+    -- add any options here, or leave empty to use the default settings
+})
+
 -- LSP Configuration
 local lspconfig = require('lspconfig')
+
+lspconfig.lua_ls.setup({
+    settings = {
+        Lua = {
+            completion = {
+                callSnippet = "Replace"
+            }
+        }
+    }
+})
 
 -- Configure LSP servers
 lspconfig.racket_langserver.setup {}
@@ -9,7 +23,8 @@ lspconfig.lua_ls.setup {}
 lspconfig.kotlin_language_server.setup {}
 lspconfig.hls.setup {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
-}
+} -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+
 -- lspconfig.black.setup{}
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

@@ -18,6 +18,7 @@ indent(4)
 for _, ft in ipairs({ "haskell" }) do
     if vim.bo.filetype == ft then
         print("setting indent for filetype" + ft + "to 2")
+        -- TODO: Not working
         indent(2)
     end
 end
@@ -32,9 +33,8 @@ vim.o.autoindent = true
 vim.o.list = true
 vim.o.listchars = 'tab:»·,trail:·'
 
--- Highlight current line and column
-vim.o.cursorline = true
-vim.o.colorcolumn = '120' -- Highlight column 80, adjust as needed
+vim.o.cursorline = true -- Highlight current line and column
+vim.o.colorcolumn = '120'
 
 -- Map key to open Neovim configuration file
 vim.api.nvim_set_keymap('n', '<leader>cr', ':e $HOME/.config/nvim/init.lua<cr>', { noremap = true, silent = true })
