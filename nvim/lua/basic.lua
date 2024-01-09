@@ -16,7 +16,8 @@ end
 indent(4)
 
 for _, ft in ipairs({ "haskell" }) do
-    if vim.o.filetype == ft then
+    if vim.bo.filetype == ft then
+        print("setting indent for filetype" + ft + "to 2")
         indent(2)
     end
 end
