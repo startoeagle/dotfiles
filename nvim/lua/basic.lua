@@ -5,12 +5,22 @@ vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = 'number'
-vim.wo.numberwidth = 2
+vim.wo.numberwidth = 4
 
--- Set the number of spaces per tab (replace with the desired value)
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+local function indent(i)
+    vim.o.tabstop = i
+    vim.o.softtabstop = i
+    vim.o.shiftwidth = i
+end
+
+indent(4)
+
+for _, ft in ipairs({ "haskell" }) do
+    if vim.o.filetype == ft then
+        indent(2)
+    end
+end
+
 vim.o.expandtab = true -- Use spaces instead of tabs
 
 -- Enable auto-indentation
@@ -35,7 +45,7 @@ vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
+    -- add any options here, or leave empty to use the default settings
 })
 
 -- then setup your lsp server as usual
@@ -43,11 +53,11 @@ local lspconfig = require('lspconfig')
 
 -- example to setup lua_ls and enable call snippets
 lspconfig.lua_ls.setup({
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace"
-      }
+    settings = {
+        Lua = {
+            completion = {
+                callSnippet = "Replace"
+            }
+        }
     }
-  }
 })

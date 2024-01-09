@@ -7,6 +7,9 @@ lspconfig.fsautocomplete.setup{}
 lspconfig.pyright.setup{}
 lspconfig.lua_ls.setup{}
 lspconfig.kotlin_language_server.setup{}
+lspconfig.hls.setup{
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+}
 -- lspconfig.black.setup{}
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
