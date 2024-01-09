@@ -4,7 +4,7 @@ vim.o.timeoutlen = 300
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.wo.signcolumn = 'number'
+vim.wo.signcolumn = "yes"
 vim.wo.numberwidth = 4
 
 local function indent(i)
