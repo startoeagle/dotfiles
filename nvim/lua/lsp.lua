@@ -48,3 +48,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+
+require('lsp_signature').setup()
