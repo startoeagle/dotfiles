@@ -5,25 +5,11 @@ vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true })
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
-vim.wo.numberwidth = 4
+vim.wo.numberwidth = 2
 
-local function indent(i)
-    vim.o.tabstop = i
-    vim.o.softtabstop = i
-    vim.o.shiftwidth = i
-end
-
-indent(4)
-
-for _, ft in ipairs({ "haskell" }) do
-    if vim.bo.filetype == ft then
-        print("setting indent for filetype" + ft + "to 2")
-        -- TODO: Not working
-        indent(2)
-    end
-end
-
-vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
 -- Enable auto-indentation
 vim.o.smartindent = true
