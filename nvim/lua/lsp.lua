@@ -1,11 +1,10 @@
-require("neodev").setup({
-    -- add any options here, or leave empty to use the default settings
-})
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup {}
 
 -- LSP Configuration
 local lspconfig = require('lspconfig')
 
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls.setup {
     settings = {
         Lua = {
             completion = {
@@ -13,7 +12,7 @@ lspconfig.lua_ls.setup({
             }
         }
     }
-})
+}
 
 -- Configure LSP servers
 lspconfig.racket_langserver.setup {}
@@ -23,7 +22,7 @@ lspconfig.lua_ls.setup {}
 lspconfig.kotlin_language_server.setup {}
 lspconfig.hls.setup {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
-} -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+}
 
 -- lspconfig.black.setup{}
 -- Global mappings.
@@ -43,23 +42,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', '<space>li', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wl', function()
+        local nmap = function(keys, func, desc)
+            if desc then
+                desc = 'LSP: ' .. desc
+            end
+            local opts = { buffer = ev.buf, desc = desc }
+            vim.keymap.set('n', keys, func, opts)
+        end
+
+        nmap('<leader>ic', vim.lsp.buf.incoming_calls, "incoming calls")
+        nmap('<leader>oc', vim.lsp.buf.outgoing_calls, "incoming calls")
+        nmap('gD', vim.lsp.buf.declaration, "goto declaration")
+        nmap('gd', vim.lsp.buf.definition, "goto definition")
+        nmap('K', vim.lsp.buf.hover, "hover")
+        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+        nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        nmap('<leader>li', vim.lsp.buf.implementation, "list all implementations")
+        nmap('<C-k>', vim.lsp.buf.signature_help, "signature help")
+        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, "add workspace folder")
+        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, "remove workspace folder")
+        nmap('<leader>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>a', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>lf', function()
+        end, "list workspace folders")
+        nmap('<leader>D', vim.lsp.buf.type_definition, "type definition")
+        nmap('<leader>rn', vim.lsp.buf.rename, "rename")
+        vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, { buffer = ev.buf, desc = "code action" })
+        nmap('<leader>lf', function()
             vim.lsp.buf.format { async = true }
-        end, opts)
+        end, "format")
     end,
 })
