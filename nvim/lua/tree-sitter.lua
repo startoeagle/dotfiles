@@ -14,6 +14,7 @@ require('nvim-treesitter.configs').setup {
         'typescript',
         'vimdoc',
         'vim',
+        'zig',
         'bash'
     },
 
