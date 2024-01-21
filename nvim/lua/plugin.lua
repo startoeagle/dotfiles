@@ -36,7 +36,8 @@ require('packer').startup(function()
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- REPL integration (Conjure)
-    use 'Olical/conjure'
+    use '/home/anton/repos/conjure'
+    use 'Olical/aniseed'
     use { 'eraserhd/parinfer-rust', run = '! cargo build --release' }
 
     use 'mg979/vim-visual-multi'

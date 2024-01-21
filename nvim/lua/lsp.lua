@@ -20,6 +20,8 @@ lspconfig.fsautocomplete.setup {}
 lspconfig.pyright.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.kotlin_language_server.setup {}
+lspconfig.zls.setup {}
+lspconfig.ocamllsp.setup {}
 lspconfig.hls.setup {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
