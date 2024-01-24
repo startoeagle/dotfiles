@@ -9,3 +9,4 @@ neotest.setup({
 })
 
 vim.keymap.set('n', '<leader>tr', neotest.run.run)
+vim.keymap.set('n', '<leader>ts', neotest.summary.toggle)
