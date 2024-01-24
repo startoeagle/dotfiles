@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         nmap('<leader>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, "list workspace folders")
-        nmap('<leader>D', vim.lsp.buf.type_definition, "type definition")
+        nmap('<leader>ld', vim.lsp.buf.type_definition, "type definition")
         nmap('<leader>rn', vim.lsp.buf.rename, "rename")
         vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, { buffer = ev.buf, desc = "code action" })
         nmap('<leader>lf', function()
