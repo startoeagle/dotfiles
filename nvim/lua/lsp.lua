@@ -16,8 +16,10 @@ lspconfig.lua_ls.setup {
 
 -- Configure LSP servers
 lspconfig.racket_langserver.setup {}
+lspconfig.rust_analyzer.setup {}
 lspconfig.fsautocomplete.setup {}
 lspconfig.pyright.setup {}
+lspconfig.ruff_lsp.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.kotlin_language_server.setup {}
 lspconfig.hls.setup {
