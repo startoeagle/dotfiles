@@ -282,6 +282,40 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  'github/copilot.vim',
+
+  {
+    "Olical/conjure",
+    ft = { "clojure", "fennel", "python" }, -- etc
+    -- [Optional] cmp-conjure for cmp
+    dependencies = {
+      {
+        "PaterJason/cmp-conjure",
+        config = function()
+          local cmp = require("cmp")
+          local config = cmp.get_config()
+          table.insert(config.sources, {
+            name = "buffer",
+            option = {
+              sources = {
+                { name = "conjure" },
+              },
+            },
+          })
+          cmp.setup(config)
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("conjure.main").main()
+      require("conjure.mapping")["on-filetype"]()
+    end,
+    init = function()
+      -- Set configuration options here
+      vim.g["conjure#debug"] = false
+    end,
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
