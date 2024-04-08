@@ -12,19 +12,6 @@ require('packer').startup(function()
     use "mfussenegger/nvim-dap"
 
     use {
-        "NeogitOrg/neogit",
-        requires = {
-            "nvim-lua/plenary.nvim",  -- required
-            "sindrets/diffview.nvim", -- optional - Diff integration
-
-            -- Only one of these is needed, not both.
-            "nvim-telescope/telescope.nvim", -- optional
-            "ibhagwan/fzf-lua",              -- optional
-        },
-        -- config = true
-    }
-
-    use {
         "nvim-neotest/neotest",
         "nvim-neotest/neotest-python",
         requires = {
