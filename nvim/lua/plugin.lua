@@ -95,6 +95,10 @@ require('packer').startup(function()
 
     use 'kyazdani42/nvim-web-devicons'
     use 'hoob3rt/lualine.nvim'
+<<<<<<< HEAD
 
     use "github/copilot.vim"
+=======
+    use 'janet-lang/janet.vim'
+>>>>>>> 2af55ff (add janet lang file)
 end)
