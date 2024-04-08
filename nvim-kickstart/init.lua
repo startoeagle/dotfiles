@@ -229,6 +229,14 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_c = {
+          {
+            'buffers',
+            show_filename_only = false, -- Shows shortened relative path when set to false.
+          }
+        },
+      }
     },
   },
 
