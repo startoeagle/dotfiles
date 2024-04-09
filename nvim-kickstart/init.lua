@@ -313,6 +313,7 @@ require('lazy').setup({
     init = function()
       -- Set configuration options here
       vim.g["conjure#debug"] = false
+      vim.g["conjure#mapping#doc_word"] = false
     end,
   },
 
