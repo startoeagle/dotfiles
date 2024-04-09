@@ -731,18 +731,14 @@ cmp.setup {
       select = true,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
+      if luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       else
         fallback()
       end
     end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
+      if luasnip.locally_jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
@@ -761,14 +757,33 @@ cmp.setup {
 local harpoon = require "harpoon"
 harpoon:setup()
 vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = 'Add [H]arpoon [A]add' })
-vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Toggle [H]arpoon [E]xplorer' })
-vim.keymap.set("n", "<leader>hj", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>hk", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>hl", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>h;", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+  { desc = 'Toggle [H]arpoon [E]xplorer' })
+vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+
+
+-- [[ Configure Oil ]]
+local oil = require "oil"
+vim.keymap.set("n", "<leader>oh", oil.open, { desc = '[O]il [H]ere (current directory of the file)' })
+
+-- [[ Configure Neotest ]]
+require("neotest").setup({
+  adapters = {
+    require("neotest-python")({
+      dap = { justMyCode = false },
+    }),
+    require("neotest-plenary"),
+    require("neotest-vim-test")({
+      ignore_file_types = { "python", "vim", "lua" },
+    }),
+  },
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
