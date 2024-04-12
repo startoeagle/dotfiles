@@ -347,6 +347,8 @@ require('lazy').setup({
   {
     "nvim-neotest/neotest",
     dependencies = {
+      "nvim-neotest/neotest-python",
+      "nvim-neotest/neotest-plenary",
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
@@ -773,17 +775,18 @@ local oil = require "oil"
 vim.keymap.set("n", "<leader>oh", oil.open, { desc = '[O]il [H]ere (current directory of the file)' })
 
 -- [[ Configure Neotest ]]
-require("neotest").setup({
+local neotest = require "neotest"
+neotest.setup({
   adapters = {
     require("neotest-python")({
       dap = { justMyCode = false },
     }),
     require("neotest-plenary"),
-    require("neotest-vim-test")({
-      ignore_file_types = { "python", "vim", "lua" },
-    }),
   },
 })
+vim.keymap.set('n', '<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
+vim.keymap.set('n', '<leader>ts', neotest.summary.toggle, { desc = '[T]est [S]ummary' })
+vim.keymap.set('n', '<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
