@@ -678,10 +678,12 @@ local servers = {
   pyright = {
     python = {
       analysis = {
-        typeCheckingMode = "off",
+        typeCheckingMode = "strict",
       },
     },
   },
+
+  mesonlsp = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
