@@ -232,8 +232,8 @@ require('lazy').setup({
       sections = {
         lualine_c = {
           {
-            'buffers',
-            show_filename_only = false, -- Shows shortened relative path when set to false.
+            'filename',
+            path = 1, -- 1: Relative path
           }
         },
       }
