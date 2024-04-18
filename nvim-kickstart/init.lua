@@ -639,6 +639,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*.py" },
+    callback = function(ev)
+      vim.lsp.buf.format({async = false})
+    end
+  })
 end
 
 -- document existing key chains
@@ -804,6 +811,15 @@ neotest.setup({
 vim.keymap.set('n', '<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
 vim.keymap.set('n', '<leader>ts', neotest.summary.toggle, { desc = '[T]est [S]ummary' })
 vim.keymap.set('n', '<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug' })
+
+-- [[ Configure NeoTree ]]
+local neotree = require "neo-tree.command"
+vim.keymap.set('n', '<leader>th', function()
+    neotree.execute({
+      actoun = 'reveal',
+    })
+  end,
+  { desc = '[T]ree [H]ere' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
