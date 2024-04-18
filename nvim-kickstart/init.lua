@@ -678,7 +678,7 @@ local servers = {
   pyright = {
     python = {
       analysis = {
-        typeCheckingMode = "strict",
+        typeCheckingMode = "off",
       },
     },
   },
@@ -778,10 +778,10 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = 'Add [H]arpoon [A]add' })
 vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
   { desc = 'Toggle [H]arpoon [E]xplorer' })
-vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<A-1>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<A-2>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<A-3>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<A-4>", function() harpoon:list():select(4) end)
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
