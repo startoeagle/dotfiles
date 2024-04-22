@@ -222,6 +222,7 @@ require('lazy').setup({
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
         icons_enabled = true,
@@ -364,7 +365,9 @@ require('lazy').setup({
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
-  }
+  },
+
+  "nvimtools/none-ls.nvim",
 }, {})
 
 -- [[ Setting options ]]
@@ -643,7 +646,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*.py" },
     callback = function(ev)
-      vim.lsp.buf.format({async = false})
+      vim.lsp.buf.format({ async = false })
     end
   })
 end
