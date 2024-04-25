@@ -368,6 +368,7 @@ require('lazy').setup({
   },
 
   "nvimtools/none-ls.nvim",
+  "mfussenegger/nvim-lint",
 }, {})
 
 -- [[ Setting options ]]
@@ -646,7 +647,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*.py" },
     callback = function(ev)
-      vim.lsp.buf.format({ async = false })
+      -- vim.lsp.buf.format({ async = false })
     end
   })
 end
@@ -824,5 +825,17 @@ vim.keymap.set('n', '<leader>th', function()
   end,
   { desc = '[T]ree [H]ere' })
 
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.completion.spell,
+    null_ls.builtins.formatting.isort,
+  },
+})
+
+require('lint').linters_by_ft = {
+  python = { 'flakeheaven', 'pyre' }
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
