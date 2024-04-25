@@ -214,7 +214,7 @@ require('lazy').setup({
         -- Set a style preset. 'dark' is default.
         style = 'cool', -- dark, darker, cool, deep, warm, warmer, light
       }
-      require('onedark').load()
+      -- require('onedark').load()
     end,
   },
   {
