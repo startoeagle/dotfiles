@@ -820,7 +820,7 @@ vim.keymap.set('n', '<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug
 local neotree = require "neo-tree.command"
 vim.keymap.set('n', '<leader>th', function()
     neotree.execute({
-      actoun = 'reveal',
+      reveal = true,
     })
   end,
   { desc = '[T]ree [H]ere' })
