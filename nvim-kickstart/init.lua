@@ -810,9 +810,13 @@ local neotest = require "neotest"
 neotest.setup({
   adapters = {
     require("neotest-python")({
-      dap = { justMyCode = false },
+      dap = {
+        justMyCode = false,
+      },
+      env = { TEST_USE_PERSISTENT_CONTAINER = true },
     }),
     require("neotest-plenary"),
+    env = { TEST_USE_PERSISTENT_CONTAINER = true },
   },
 })
 vim.keymap.set('n', '<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
