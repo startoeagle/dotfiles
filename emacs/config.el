@@ -82,7 +82,7 @@
 (use-package sly)
 
 (use-package php-mode
-  :pin nongnu)
+  :pin non gnu)
 
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'flyspell-buffer)

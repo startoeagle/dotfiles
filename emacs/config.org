@@ -120,7 +120,7 @@ Exit with jk
 ** PHP
 #+begin_src elisp
   (use-package php-mode
-    :pin nongnu)
+    :pin non gnu)
 #+end_src
 
 
@@ -179,3 +179,15 @@ Do not ask if the code should be evaluated
 : "ob-kotlin-eoe"res3: kotlin.String = >>> 
 
 : res9: kotlin.String = >>> 
+
+
+
+* COMMENT Open main org file as default
+
+
+#+begin_src elisp
+  (read "~/org/notes.org")
+#+end_src
+
+#+RESULTS:
+: ~/org/notes.org
