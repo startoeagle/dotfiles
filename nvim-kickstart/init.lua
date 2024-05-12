@@ -425,6 +425,9 @@ vim.o.swapfile = false
 
 -- [[ Basic Keymaps ]]
 
+-- Make sure that Swedish is nice to use
+vim.keymap.set('n', 'Ö', ':')
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
