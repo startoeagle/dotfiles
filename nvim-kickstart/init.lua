@@ -387,6 +387,7 @@ vim.o.swapfile = false
 
 -- Make sure that Swedish is nice to use
 vim.keymap.set('n', 'Ö', ':')
+vim.keymap.set('n', 'ö', ';')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
