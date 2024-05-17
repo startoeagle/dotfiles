@@ -64,6 +64,19 @@
 #+RESULTS:
 : t
 
+* TODO MacOS quirks for swedish layout
+
+this will break the common keyboard shortcuts that is used.
+map the keys that are needed instead, For instance ~[~ and ~]~
+#+begin_src elisp 
+  ;; (setq mac-option-modifier nil
+  ;;     mac-command-modifier 'meta
+  ;;     x-select-enable-clipboard t)
+#+end_src
+
+#+RESULTS:
+: t
+
 * Appearance
 #+begin_src elisp
   (tool-bar-mode -1)
