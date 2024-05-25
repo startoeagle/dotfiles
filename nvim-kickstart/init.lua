@@ -742,7 +742,7 @@ cmp.setup {
     end,
   },
   completion = {
-    completeopt = 'menu,menuone,noselect,noinsert',
+    completeopt = 'menu,menuone,noinsert',
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -770,12 +770,28 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-    { name = 'cmdline' },
-  },
+  sources = cmp.config.sources( {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+    }, {
+      { name = 'buffer' },
+      { name = 'path' },
+    }),
+    cmp.setup.cmdline('/', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
+    }),
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }),
+      matching = { disallow_symbol_nonprefix_matching = false }
+    })
 }
 
 -- [[ Configure harpoon ]]
@@ -820,13 +836,12 @@ vim.keymap.set('n', '<leader>th', function()
   end,
   { desc = '[T]ree [H]ere' })
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.completion.spell,
-  },
-})
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--   sources = {
+--     null_ls.builtins.completion.spell,
+--   },
+-- })
 
 require('lint').linters_by_ft = {
 }
