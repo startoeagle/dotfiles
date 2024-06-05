@@ -836,12 +836,13 @@ vim.keymap.set('n', '<leader>th', function()
   end,
   { desc = '[T]ree [H]ere' })
 
--- local null_ls = require("null-ls")
--- null_ls.setup({
---   sources = {
---     null_ls.builtins.completion.spell,
---   },
--- })
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.completion.spell,
+  },
+})
 
 require('lint').linters_by_ft = {
 }
