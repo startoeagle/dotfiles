@@ -339,7 +339,6 @@ require('lazy').setup({
   },
 
   "nvimtools/none-ls.nvim",
-  "mfussenegger/nvim-lint",
 }, {})
 
 -- [[ Setting options ]]
@@ -841,11 +840,10 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.completion.spell,
+    null_ls.builtins.diagnostics.codespell,
+    null_ls.builtins.diagnostics.write_good,
   },
 })
-
-require('lint').linters_by_ft = {
-}
 
 require 'custom.window'
 
