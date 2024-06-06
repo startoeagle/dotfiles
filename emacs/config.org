@@ -158,6 +158,12 @@ Exit with jk
 
 #+RESULTS:
 
+#+begin_src elisp
+  (use-package paredit)
+#+end_src
+
+#+RESULTS:
+
 * org mode
 ** Enable flyspell mode in org mode
 
