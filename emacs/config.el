@@ -1,9 +1,10 @@
-(load-theme 'wombat)
-
-;; Initialize package sources
 (require 'package)
 
 (package-initialize)
+(add-to-list 'package-archives
+           '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+           '("melpa-stable" . "https://stable.melpa.org/packages/") t)  
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
@@ -21,24 +22,6 @@
   :config
   (setq company-idle-delay 0.3)
   (global-company-mode t))
-(use-package parinfer-rust-mode
-  :hook emacs-lisp-mode
-  :init
-  (setq parinfer-rust-auto-download 1))    
-(use-package helm
-  :init (helm-mode)
-  :bind
-  ("M-x" . helm-M-x)
-  ("C-x C-f" . helm-find-files))
-
-(use-package helpful
-  :bind
-    ("C-h f" . #'helpful-callable)
-    ("C-h v" . #'helpful-variable)
-    ("C-h k" . #'helpful-key)
-    ("C-c C-d" . #'helpful-at-point)
-    ("C-h F" . #'helpful-function)
-    ("C-h C" . #'helpful-command))
 
 (use-package doom-themes
   :ensure t
@@ -46,6 +29,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
   (load-theme 'doom-dracula t)
 
   ;; Enable flashing mode-line on errors
@@ -58,6 +42,19 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(use-package helpful
+  :bind
+    ("C-h f" . #'helpful-callable)
+    ("C-h v" . #'helpful-variable)
+    ("C-h k" . #'helpful-key)
+    ("C-c C-d" . #'helpful-at-point)
+    ("C-h F" . #'helpful-function)
+    ("C-h C" . #'helpful-command))
+
+;; (setq mac-option-modifier nil
+;;     mac-command-modifier 'meta
+;;     x-select-enable-clipboard t)
+
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
@@ -68,13 +65,15 @@
   :init (evil-mode))
 
 (use-package key-chord
-  :init
-  (setq key-chord-two-keys-delay 0.5)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-mode 1))
+    :init
+(setq key-chord-two-keys-delay 0.5)
+    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+    (key-chord-mode 1))
 
 (use-package eglot
-  :hook '(python-mode-hook))
+  :hook '((python-mode . eglot-ensure)
+	  (java-mode . eglot-ensure)
+	  (kotin-mode . eglot-ensure)))
 
 (use-package kotlin-mode
   :mode ("\\.kt\\'" . kotlin-mode))
@@ -97,5 +96,6 @@
     'org-babel-load-languages
     '((python . t)
       (kotlin . t)
+      (java . t)
       (php . t)
       (shell . t)))
