@@ -246,12 +246,9 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground'
     },
     build = ':TSUpdate',
-  },
-  {
-    'nvim-treesitter/playground',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' }
   },
 
   'github/copilot.vim',
@@ -843,6 +840,12 @@ null_ls.setup({
 })
 
 require 'custom.window'
+
+-- Recognize .bisis files as Python files
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.ibis",
+    command = "set filetype=python"
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
