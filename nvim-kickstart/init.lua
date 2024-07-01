@@ -54,6 +54,10 @@ require('lazy').setup({
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
+      {
+        "microsoft/python-type-stubs",
+        cond = false
+      }
     },
   },
 
@@ -684,6 +688,7 @@ local servers = {
     python = {
       analysis = {
         typeCheckingMode = "off",
+        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
       },
     },
   },
@@ -846,9 +851,9 @@ null_ls.setup({
 require 'custom.window'
 
 -- Recognize .bisis files as Python files
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-    pattern = "*.ibis",
-    command = "set filetype=python"
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.ibis",
+  command = "set filetype=python"
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
