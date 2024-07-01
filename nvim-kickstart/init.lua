@@ -366,6 +366,10 @@ vim.o.undofile = true
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.inccommand = 'split'
+
+vim.keymap.set("n", "<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
+
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
