@@ -687,8 +687,7 @@ local servers = {
   pyright = {
     python = {
       analysis = {
-        typeCheckingMode = "off",
-        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+        typeCheckingMode = "on",
       },
     },
   },
