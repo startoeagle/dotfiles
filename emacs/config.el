@@ -51,9 +51,8 @@
     ("C-h F" . #'helpful-function)
     ("C-h C" . #'helpful-command))
 
-;; (setq mac-option-modifier nil
-;;     mac-command-modifier 'meta
-;;     x-select-enable-clipboard t)
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta)
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -80,8 +79,7 @@
 
 (use-package sly)
 
-(use-package php-mode
-  :pin non gnu)
+(use-package paredit)
 
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'flyspell-buffer)

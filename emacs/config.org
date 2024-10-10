@@ -1,4 +1,5 @@
 * Set up package manager
+
 #+begin_src elisp
   (require 'package)
 
@@ -79,13 +80,13 @@
 this will break the common keyboard shortcuts that is used.
 map the keys that are needed instead, For instance ~[~ and ~]~
 #+begin_src elisp 
-  ;; (setq mac-option-modifier nil
-  ;;     mac-command-modifier 'meta
-  ;;     x-select-enable-clipboard t)
+  (setq mac-option-modifier nil
+	mac-command-modifier 'meta)
 #+end_src
 
 #+RESULTS:
-: t
+: meta
+
 
 * Appearance
 #+begin_src elisp
@@ -149,15 +150,6 @@ Exit with jk
 
 #+RESULTS:
 
-** PHP
-#+begin_src elisp
-  (use-package php-mode
-    :pin non gnu)
-#+end_src
-
-
-#+RESULTS:
-
 #+begin_src elisp
   (use-package paredit)
 #+end_src
@@ -198,7 +190,6 @@ Do not ask if the code should be evaluated
 	(php . t)
 	(shell . t)))
 #+end_src
-
 #+RESULTS:
 
 *** Some tests for running programming languages in org-mode
@@ -215,31 +206,16 @@ Do not ask if the code should be evaluated
 #+end_src
 
 #+RESULTS:
-: :load /var/folders/_d/r0z_dkts4h182rfjptqnpjkc0000gq/T/babel-36rH0a/kotlin-5GOdQlHello, world 2
-: "ob-kotlin-eoe"res3: kotlin.String = >>> 
-
-: res9: kotlin.String = >>> 
+: Hello, world 2
+: res1: kotlin.String = >>> 
 
 
 #+begin_src java
   class HelloWorld {
       public static void main () {
-	  console.out.println("Hello, world");
+        system.console.println("print");
       }
   }
-#+end_src
-
-#+RESULTS:
-* Projects with projectile
-#+begin_src elisp
-(use-package projectile)
-#+end_src
-
-#+RESULTS:
-
-* Git
-#+begin_src elisp
-(use-package magit)
 #+end_src
 
 #+RESULTS:
