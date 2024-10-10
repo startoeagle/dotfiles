@@ -847,15 +847,6 @@ vim.keymap.set('n', '<leader>th', function()
   end,
   { desc = '[T]ree [H]ere' })
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.completion.spell,
-    null_ls.builtins.diagnostics.codespell,
-    null_ls.builtins.diagnostics.write_good,
-  },
-})
 
 require 'custom.window'
 
