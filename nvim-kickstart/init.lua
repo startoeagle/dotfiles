@@ -259,7 +259,7 @@ require('lazy').setup({
 
   {
     "Olical/conjure",
-    ft = { "clojure", "fennel", "python", "lua" }, -- etc
+    ft = { "clojure", "fennel", "python", "lua", "racket" }, -- etc
     -- [Optional] cmp-conjure for cmp
     dependencies = {
       {
@@ -289,6 +289,8 @@ require('lazy').setup({
       vim.g["conjure#mapping#doc_word"] = false
     end,
   },
+
+  { "eraserhd/parinfer-rust", build = "cargo build --release" },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -730,6 +732,10 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+}
+require 'lspconfig'.racket_langserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 -- [[ Configure nvim-cmp ]]
