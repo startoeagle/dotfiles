@@ -850,7 +850,7 @@ vim.keymap.set('n', '<leader>th', function()
 
 require 'custom.window'
 
--- Recognize .bisis files as Python files
+-- Recognize .ibis files as Python files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.ibis",
   command = "set filetype=python"
