@@ -1,0 +1,16 @@
+#!/usr/bin/env fish
+
+set selected_proj (ls ~/repos | fzf )
+set is_in_session (tmux list-sessions | grep '(attached)' | sed 's/^\(.*\): .*/\1/')
+set session_exist (tmux list-sessions | grep $selected_proj)
+
+if test -z $session_exist
+        tmux new -d -s $selected_proj -c "$HOME/repos/$selected_proj"
+end
+
+if test -z $is_in_session
+        set proj_with_path "$HOME/repos/$selected_proj"
+        tmux attach-session -t $selected_proj
+else
+        tmux switchc -t $selected_proj
+end
