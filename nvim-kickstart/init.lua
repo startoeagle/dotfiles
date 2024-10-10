@@ -342,8 +342,10 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
   },
-
-  "nvimtools/none-ls.nvim",
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+  }
 }, {})
 
 -- [[ Setting options ]]
