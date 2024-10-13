@@ -354,7 +354,7 @@ require('lazy').setup({
         { "github/copilot.vim" },
         { "nvim-lua/plenary.nvim" },
       },
-      build = "make tiktoken", -- Only on MacOS or Linux
+      build = "make tiktoken",
       opts = {
         debug = false,
       },
@@ -868,7 +868,9 @@ cmp.setup {
 local harpoon = require "harpoon"
 harpoon:setup()
 nmap("<leader>ha", function() harpoon:list():add() end, { desc = 'Add [H]arpoon [A]add' })
-nmap("<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+nmap("<leader>he", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+  end,
   { desc = 'Toggle [H]arpoon [E]xplorer' })
 nmap("<A-1>", function() harpoon:list():select(1) end)
 nmap("<A-2>", function() harpoon:list():select(2) end)
