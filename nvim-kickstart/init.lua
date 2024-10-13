@@ -910,10 +910,8 @@ neotest.setup({
       dap = {
         justMyCode = false,
       },
-      env = { TEST_USE_PERSISTENT_CONTAINER = true },
     }),
     require("neotest-plenary"),
-    env = { TEST_USE_PERSISTENT_CONTAINER = true },
   },
 })
 nmap('<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
