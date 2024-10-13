@@ -383,8 +383,15 @@ require('lazy').setup({
       config = function()
         local chat = require("CopilotChat")
         chat.setup {}
-        function nmap_chat(keys, func, desc)
-          nmap('<leader>cp' .. keys, func, { desc = desc })
+
+        local local_prefix = '<leader>cp'
+        local nmap_chat = function(keys, func, desc)
+          nmap(local_prefix .. keys, func, { desc = desc })
+        end
+
+        local map_chat = function(keys, func, desc)
+          nmap(local_prefix .. keys, func, { desc = desc })
+          vmap(local_prefix .. keys, func, { desc = desc })
         end
 
         nmap_chat('o', chat.open, '[O]pen chat')
