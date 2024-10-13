@@ -4,6 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local nmap = function(keys, func, opts)
+  vim.keymap.set("n", keys, func, opts)
+end
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -427,9 +430,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = 'split'
 
-nmap = function(keys, func, opts)
-  vim.keymap.set("n", keys, func, opts)
-end
+
 
 nmap("<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
 
