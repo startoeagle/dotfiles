@@ -396,9 +396,9 @@ require('lazy').setup({
 
         nmap_chat('o', chat.open, '[O]pen chat')
         nmap_chat('c', function() vim.cmd('CopilotChatCommitStaged') end, 'Suggest [C]ommit staged')
-        nmap_chat('t', function() vim.cmd('CopilotChatTests') end, '[T]est')
-        nmap_chat('e', function() vim.cmd('CopilotChatExplain') end, '[E]xplain')
-        nmap_chat('r', function() vim.cmd('CopilotChatReview') end, '[R]eview')
+        map_chat('t', function() vim.cmd('CopilotChatTests') end, '[T]est')
+        map_chat('e', function() vim.cmd('CopilotChatExplain') end, '[E]xplain')
+        map_chat('r', function() vim.cmd('CopilotChatReview') end, '[R]eview')
       end,
     },
   },
