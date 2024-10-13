@@ -430,7 +430,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+local telescope = require('telescope')
+telescope.setup {
   defaults = {
     mappings = {
       i = {
@@ -438,8 +439,13 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    path_display = { "smart" },
   },
 }
+vim.keymap.set('n', '<leader>si',
+  function() require("telescope.builtin").live_grep({ cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) }) end,
+  { desc = '[i] Search [i] current directory of the file' }
+)
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
