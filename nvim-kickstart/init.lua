@@ -364,9 +364,12 @@ require('lazy').setup({
       config = function()
         local chat = require("CopilotChat")
         chat.setup {}
+        function nmap_chat(keys, func, desc)
+          nmap('<leader>cp' .. keys, func, { desc = desc })
+        end
 
-        nmap('<leader>cpo', chat.open, { desc = '[O]pen chat' })
-        nmap('<leader>cpc', function () vim.cmd('CopilotChatCommitStaged') end, { desc = '[C]ommit staged' })
+        nmap_chat('o', chat.open, '[O]pen chat')
+        nmap_chat('c', function() vim.cmd('CopilotChatCommitStaged') end, '[C]ommit staged')
       end,
     },
   },
