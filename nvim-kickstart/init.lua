@@ -4,8 +4,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-local nmap = function(keys, func, opts)
-  vim.keymap.set("n", keys, func, opts)
+local nmap = function(key_combination, action, options)
+  vim.keymap.set("n", key_combination, action, options)
 end
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
