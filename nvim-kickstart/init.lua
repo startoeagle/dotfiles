@@ -404,7 +404,7 @@ require('lazy').setup({
             local ns = vim.api.nvim_get_namespaces()['github-copilot']
             vim.diagnostic.reset(ns, 0)
           end,
-          '[H]ide [R]eview')
+          'Hide review diagnostics for GitHub Copilot')
       end,
     },
   },
