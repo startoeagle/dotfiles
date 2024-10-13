@@ -7,6 +7,9 @@ vim.g.maplocalleader = ' '
 local nmap = function(key_combination, action, options)
   vim.keymap.set("n", key_combination, action, options)
 end
+local vmap = function(key_combination, action, options)
+  vim.keymap.set("v", key_combination, action, options)
+end
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
