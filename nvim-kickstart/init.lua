@@ -364,24 +364,9 @@ require('lazy').setup({
       config = function()
         local chat = require("CopilotChat")
         chat.setup {}
-        local auto_commit = function()
-          local chat = require("CopilotChat")
-          local prompt = chat.prompts(true).CommitStaged
-
-          local input = prompt.prompt
-          vim.cmd("Git commit")
-
-          local buf = vim.api.nvim_get_current_buf()
-          if input == nil then
-            return
-          end
-          chat.ask(input, prompt)
-          local res = chat.response()
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, { res })
-        end
 
         nmap('<leader>cpo', chat.open, { desc = '[O]pen chat' })
-        nmap('<leader>cpc', auto_commit, { desc = '[C]ommit changes' })
+        nmap('<leader>cpc', function () vim.cmd('CopilotChatCommitStaged') end, { desc = '[C]ommit staged' })
       end,
     },
   },
