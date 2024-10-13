@@ -345,7 +345,6 @@ require('lazy').setup({
   {
     'stevearc/overseer.nvim',
     opts = {},
-  }
   },
   {
     {
@@ -428,7 +427,11 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = 'split'
 
-vim.keymap.set("n", "<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
+nmap = function(keys, func, opts)
+  vim.keymap.set("n", keys, func, opts)
+end
+
+nmap("<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
 
 
 -- Keep signcolumn on by default
@@ -450,22 +453,22 @@ vim.o.swapfile = false
 -- [[ Basic Keymaps ]]
 
 -- Make sure that Swedish is nice to use
-vim.keymap.set('n', 'Ö', ':')
-vim.keymap.set('n', 'ö', ';')
+nmap('Ö', ':')
+nmap('ö', ';')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+nmap('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+nmap('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+nmap('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+nmap(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+nmap('<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+nmap('<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -492,7 +495,7 @@ telescope.setup {
     path_display = { "smart" },
   },
 }
-vim.keymap.set('n', '<leader>si',
+nmap('<leader>si',
   function() require("telescope.builtin").live_grep({ cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) }) end,
   { desc = '[i] Search [i] current directory of the file' }
 )
@@ -537,9 +540,9 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
+nmap('<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+nmap('<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+nmap('<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
@@ -553,16 +556,16 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
-vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+nmap('<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
+nmap('<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
+nmap('<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+nmap('<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+nmap('<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+nmap('<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+nmap('<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+nmap('<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+nmap('<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+nmap('<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -670,7 +673,7 @@ local on_attach = function(_, bufnr)
       desc = 'LSP: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    nmap(keys, func, { buffer = bufnr, desc = desc })
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -864,13 +867,13 @@ cmp.setup {
 -- [[ Configure harpoon ]]
 local harpoon = require "harpoon"
 harpoon:setup()
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = 'Add [H]arpoon [A]add' })
-vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+nmap("<leader>ha", function() harpoon:list():add() end, { desc = 'Add [H]arpoon [A]add' })
+nmap("<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
   { desc = 'Toggle [H]arpoon [E]xplorer' })
-vim.keymap.set("n", "<A-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<A-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<A-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<A-4>", function() harpoon:list():select(4) end)
+nmap("<A-1>", function() harpoon:list():select(1) end)
+nmap("<A-2>", function() harpoon:list():select(2) end)
+nmap("<A-3>", function() harpoon:list():select(3) end)
+nmap("<A-4>", function() harpoon:list():select(4) end)
 
 -- [[ Configure Oil ]]
 local oil = require "oil"
@@ -895,7 +898,7 @@ oil.setup({
   },
 })
 
-vim.keymap.set("n", "<leader>oh", oil.open, { desc = '[O]il [H]ere (current directory of the file)' })
+nmap("<leader>oh", oil.open, { desc = '[O]il [H]ere (current directory of the file)' })
 
 -- [[ Configure Neotest ]]
 local neotest = require "neotest"
@@ -911,13 +914,13 @@ neotest.setup({
     env = { TEST_USE_PERSISTENT_CONTAINER = true },
   },
 })
-vim.keymap.set('n', '<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
-vim.keymap.set('n', '<leader>ts', neotest.summary.toggle, { desc = '[T]est [S]ummary' })
-vim.keymap.set('n', '<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug' })
+nmap('<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
+nmap('<leader>ts', neotest.summary.toggle, { desc = '[T]est [S]ummary' })
+nmap('<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug' })
 
 -- [[ Configure NeoTree ]]
 local neotree = require "neo-tree.command"
-vim.keymap.set('n', '<leader>th', function()
+nmap('<leader>th', function()
     neotree.execute({
       reveal = true,
     })
