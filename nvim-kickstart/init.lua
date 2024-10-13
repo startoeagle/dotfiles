@@ -431,7 +431,6 @@ vim.o.smartcase = true
 vim.o.inccommand = 'split'
 
 
-
 nmap("<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
 
 
