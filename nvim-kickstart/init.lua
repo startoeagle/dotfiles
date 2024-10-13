@@ -369,7 +369,7 @@ require('lazy').setup({
         end
 
         nmap_chat('o', chat.open, '[O]pen chat')
-        nmap_chat('c', function() vim.cmd('CopilotChatCommitStaged') end, '[C]ommit staged')
+        nmap_chat('c', function() vim.cmd('CopilotChatCommitStaged') end, 'Suggest [C]ommit staged')
         nmap_chat('t', function() vim.cmd('CopilotChatTests') end, '[T]est')
         nmap_chat('e', function() vim.cmd('CopilotChatExplain') end, '[E]xplain')
         nmap_chat('r', function() vim.cmd('CopilotChatReview') end, '[R]eview')
