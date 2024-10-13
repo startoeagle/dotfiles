@@ -346,6 +346,21 @@ require('lazy').setup({
     'stevearc/overseer.nvim',
     opts = {},
   }
+  },
+  {
+    {
+      "CopilotC-Nvim/CopilotChat.nvim",
+      branch = "canary",
+      dependencies = {
+        { "github/copilot.vim" },
+        { "nvim-lua/plenary.nvim" },
+      },
+      build = "make tiktoken", -- Only on MacOS or Linux
+      opts = {
+        debug = false,
+      },
+    },
+  },
 }, {})
 
 -- [[ Setting options ]]
