@@ -361,6 +361,28 @@ require('lazy').setup({
       opts = {
         debug = false,
       },
+      config = function()
+        local chat = require("CopilotChat")
+        chat.setup {}
+        local auto_commit = function()
+          local chat = require("CopilotChat")
+          local prompt = chat.prompts(true).CommitStaged
+
+          local input = prompt.prompt
+          vim.cmd("Git commit")
+
+          local buf = vim.api.nvim_get_current_buf()
+          if input == nil then
+            return
+          end
+          chat.ask(input, prompt)
+          local res = chat.response()
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, { res })
+        end
+
+        nmap('<leader>cpo', chat.open, { desc = '[O]pen chat' })
+        nmap('<leader>cpc', auto_commit, { desc = '[C]ommit changes' })
+      end,
     },
   },
 
@@ -668,7 +690,7 @@ local on_attach = function(_, bufnr)
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+  local nmap_lsp = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
@@ -676,28 +698,28 @@ local on_attach = function(_, bufnr)
     nmap(keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>cf', vim.lsp.buf.format, '[C]ode [f]ormat')
-  nmap('<leader>ca', function()
+  nmap_lsp('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+  nmap_lsp('<leader>cf', vim.lsp.buf.format, '[C]ode [f]ormat')
+  nmap_lsp('<leader>ca', function()
     vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
   end, '[C]ode [A]ction')
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap_lsp('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  nmap_lsp('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap_lsp('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  nmap_lsp('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+  nmap_lsp('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap_lsp('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap_lsp('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap_lsp('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
+  nmap_lsp('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap_lsp('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap_lsp('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap_lsp('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
@@ -716,7 +738,8 @@ end
 
 -- document existing key chains
 require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  ['<leader>c'] = { name = '[C]ode and Copilot', _ = 'which_key_ignore' },
+  ['<leader>cp'] = { name = '[C]o[p]ilot', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>h'] = { name = 'Git [H]unk and Harpoon', _ = 'which_key_ignore' },
