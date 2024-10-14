@@ -226,6 +226,7 @@ require('lazy').setup({
         section_separators = '',
       },
       sections = {
+        lualine_b = { 'diff', 'diagnostics' },
         lualine_c = {
           {
             'filename',
