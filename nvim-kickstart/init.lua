@@ -368,6 +368,19 @@ require('lazy').setup({
   {
     'stevearc/overseer.nvim',
     opts = {},
+    config = function()
+      local overseer = require("overseer")
+      overseer.setup({})
+      overseer.register_template({
+        name = "Run python",
+        builder = function(params)
+          local filename = vim.api.nvim_buf_get_name(0)
+          return {
+            cmd = { "uv", "run", "python", filename },
+          }
+        end,
+      })
+    end,
   },
   {
     {
