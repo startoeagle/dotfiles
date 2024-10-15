@@ -806,12 +806,6 @@ require('which-key').add {
   { '<leader>w',   desc = '[W]orkspace' },
   { '<leader>o',   desc = '[O]il' },
 }
--- register which-key VISUAL mode
--- required for visual <leader>hs (hunk stage) to work
-require('which-key').add({
-  {'<leader>' , name = 'VISUAL <leader>'},
-  {'<leader>h' , 'Git [H]unk'},
-}, { mode = 'v' })
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
