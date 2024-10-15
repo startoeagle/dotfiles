@@ -63,23 +63,23 @@ require('lazy').setup({
   {
     "brenton-leighton/multiple-cursors.nvim",
     version = "*", -- Use the latest tagged version
-    opts = {},   -- This causes the plugin setup function to be called
+    opts = {},     -- This causes the plugin setup function to be called
     keys = {
-      { "<C-j>",         "<Cmd>MultipleCursorsAddDown<CR>",          mode = { "n", "x" },    desc = "Add cursor and move down" },
-      { "<C-k>",         "<Cmd>MultipleCursorsAddUp<CR>",            mode = { "n", "x" },    desc = "Add cursor and move up" },
+      { "<C-j>",         "<Cmd>MultipleCursorsAddDown<CR>",          mode = { "n", "x" },      desc = "Add cursor and move down" },
+      { "<C-k>",         "<Cmd>MultipleCursorsAddUp<CR>",            mode = { "n", "x" },      desc = "Add cursor and move up" },
 
       { "<C-Up>",        "<Cmd>MultipleCursorsAddUp<CR>",            mode = { "n", "i", "x" }, desc = "Add cursor and move up" },
       { "<C-Down>",      "<Cmd>MultipleCursorsAddDown<CR>",          mode = { "n", "i", "x" }, desc = "Add cursor and move down" },
 
-      { "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>",   mode = { "n", "i" },    desc = "Add or remove cursor" },
+      { "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>",   mode = { "n", "i" },      desc = "Add or remove cursor" },
 
-      { "<Leader>a",     "<Cmd>MultipleCursorsAddMatches<CR>",       mode = { "n", "x" },    desc = "Add cursors to cword" },
-      { "<Leader>A",     "<Cmd>MultipleCursorsAddMatchesV<CR>",      mode = { "n", "x" },    desc = "Add cursors to cword in previous area" },
+      { "<Leader>a",     "<Cmd>MultipleCursorsAddMatches<CR>",       mode = { "n", "x" },      desc = "Add cursors to cword" },
+      { "<Leader>A",     "<Cmd>MultipleCursorsAddMatchesV<CR>",      mode = { "n", "x" },      desc = "Add cursors to cword in previous area" },
 
-      { "<Leader>d",     "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = { "n", "x" },    desc = "Add cursor and jump to next cword" },
-      { "<Leader>D",     "<Cmd>MultipleCursorsJumpNextMatch<CR>",    mode = { "n", "x" },    desc = "Jump to next cword" },
+      { "<Leader>d",     "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = { "n", "x" },      desc = "Add cursor and jump to next cword" },
+      { "<Leader>D",     "<Cmd>MultipleCursorsJumpNextMatch<CR>",    mode = { "n", "x" },      desc = "Jump to next cword" },
 
-      { "<Leader>l",     "<Cmd>MultipleCursorsLock<CR>",             mode = { "n", "x" },    desc = "Lock virtual cursors" },
+      { "<Leader>l",     "<Cmd>MultipleCursorsLock<CR>",             mode = { "n", "x" },      desc = "Lock virtual cursors" },
     },
   },
 
@@ -800,16 +800,16 @@ end
 
 -- document existing key chains
 require('which-key').add {
-  { '<leader>c',   desc = '[C]ode and Copilot' },
-  { '<leader>cp',  desc = '[C]o[p]ilot' },
-  { '<leader>d',   desc = '[D]ocument' },
-  { '<leader>g',   desc = '[G]it' },
-  { '<leader>h',   desc = 'Git [H]unk and Harpoon' },
-  { '<leader>r',   desc = '[R]ename' },
-  { '<leader>s',   desc = '[S]earch' },
-  { '<leader>t',   desc = '[T]oggle' },
-  { '<leader>w',   desc = '[W]orkspace' },
-  { '<leader>o',   desc = '[O]il' },
+  { '<leader>c',  desc = '[C]ode and Copilot' },
+  { '<leader>cp', desc = '[C]o[p]ilot' },
+  { '<leader>d',  desc = '[D]ocument' },
+  { '<leader>g',  desc = '[G]it' },
+  { '<leader>h',  desc = 'Git [H]unk and Harpoon' },
+  { '<leader>r',  desc = '[R]ename' },
+  { '<leader>s',  desc = '[S]earch' },
+  { '<leader>t',  desc = '[T]oggle' },
+  { '<leader>w',  desc = '[W]orkspace' },
+  { '<leader>o',  desc = '[O]il' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
