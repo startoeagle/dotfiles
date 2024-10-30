@@ -860,6 +860,12 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
+    local ok, wf = pcall(require, "vim.lsp._watchfiles")
+    if ok then
+      wf._watchfunc = function()
+        return function() end
+      end
+    end
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
