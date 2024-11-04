@@ -51,6 +51,7 @@ require('lazy').setup({
     config = function()
       local neogit = require("neogit")
       neogit.setup({})
+      nmap('<leader>vo', neogit.open, { desc = '[V]ersion control [O]pen' })
     end
   },
   'tpope/vim-rhubarb',
@@ -803,6 +804,7 @@ require('which-key').add {
   { '<leader>t',  desc = '[T]oggle' },
   { '<leader>w',  desc = '[W]orkspace' },
   { '<leader>o',  desc = '[O]il' },
+  { '<leader>b',  desc = '[V]ersion control' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
