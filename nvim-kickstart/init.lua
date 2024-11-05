@@ -439,6 +439,8 @@ require('lazy').setup({
         map_chat('t', function() vim.cmd('CopilotChatTests') end, '[T]est')
         map_chat('e', function() vim.cmd('CopilotChatExplain') end, '[E]xplain')
         map_chat('r', function() vim.cmd('CopilotChatReview') end, '[R]eview')
+        map_chat('fc', function() vim.cmd('CopilotChatFix') end, '[F]ix [C]ode')
+        map_chat('fd', function() vim.cmd('CopilotChatFix') end, '[F]ix [D]iagnostics')
         nmap_chat('hr',
           function()
             local ns = vim.api.nvim_get_namespaces()['github-copilot']
