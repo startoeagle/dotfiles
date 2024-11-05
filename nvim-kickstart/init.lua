@@ -542,6 +542,7 @@ vim.o.swapfile = false
 -- Make sure that Swedish is nice to use
 nmap('Ö', ':')
 nmap('ö', ';')
+vmap('ö', ';')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
