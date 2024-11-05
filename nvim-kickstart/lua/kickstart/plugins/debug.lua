@@ -21,6 +21,11 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    {
+      "julianolf/nvim-dap-lldb",
+      -- dependencies = { "mfussenegger/nvim-dap" },
+      opts = { codelldb_path = "~/.local/bin/codelldb" },
+    }
   },
   config = function()
     local dap = require 'dap'
