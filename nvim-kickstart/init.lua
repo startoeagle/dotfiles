@@ -409,6 +409,21 @@ require('lazy').setup({
     end,
   },
   {
+    "ej-shafran/compile-mode.nvim",
+    branch = "latest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "m00qek/baleia.nvim", tag = "v1.3.0" },
+    },
+    config = function()
+      ---@type CompileModeOpts
+      vim.g.compile_mode = {
+        baleia_setup = true,
+      }
+      nmap("<leader>cm" , ":Compile<CR>", { desc = "[C]ompile [M]ode" })
+    end
+  },
+  {
     {
       "CopilotC-Nvim/CopilotChat.nvim",
       branch = "canary",
@@ -797,8 +812,7 @@ end
 
 -- document existing key chains
 require('which-key').add {
-  { '<leader>c',  desc = '[C]ode and Copilot' },
-  { '<leader>cp', desc = '[C]o[p]ilot' },
+  { '<leader>c',  desc = '[C]ode, Copilot and Compilation' },
   { '<leader>d',  desc = '[D]ocument' },
   { '<leader>g',  desc = '[G]it' },
   { '<leader>h',  desc = 'Git [H]unk and Harpoon' },
