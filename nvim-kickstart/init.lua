@@ -51,7 +51,7 @@ require('lazy').setup({
     config = function()
       local neogit = require("neogit")
       neogit.setup({})
-      nmap('<leader>vo', neogit.open, { desc = '[V]ersion control [O]pen' })
+      nmap('<leader>v', neogit.open, { desc = '[V]ersion control' })
     end
   },
   'tpope/vim-rhubarb',
