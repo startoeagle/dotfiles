@@ -473,7 +473,8 @@ require('lazy').setup({
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("refactoring").setup({
+      local ref = require("refactoring")
+      ref.setup({
         prompt_func_return_type = {
           go = false,
           java = false,
@@ -498,6 +499,20 @@ require('lazy').setup({
         print_var_statements = {},
         show_success_message = true,
       })
+      local map_ref = function(keys, func, desc)
+        nmap('<leader>r' .. keys, func, { desc = desc })
+        vmap('<leader>r' .. keys, func, { desc = desc })
+      end
+      local nmap_ref = function(keys, func, desc)
+        nmap('<leader>r' .. keys, func, { desc = desc })
+      end
+
+
+      map_ref('ev', function() ref.refactor('Extract Variable') end, '[R]efactor [E]xtract [V]ariable')
+      map_ref('ef', function() ref.refactor('Extract Function') end, '[R]efactor [E]xtract [F]unction')
+
+      nmap_ref('iv', function() ref.refactor('Inline Variable') end, '[R]efactor [I]nline [V]ariable')
+      nmap_ref('if', function() ref.refactor('Inline Function') end, '[R]efactor [I]nline [F]unction')
     end,
   },
 }, {})
