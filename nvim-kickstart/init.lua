@@ -547,6 +547,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = 'split'
 
+vim.o.cursorline = true 
 
 nmap("<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
 
