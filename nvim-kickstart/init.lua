@@ -1045,6 +1045,10 @@ nmap('<leader>th', function()
 
 require 'custom.window'
 
+nmap("<C-A-h>", "<C-w>h", { desc = 'Move to the [H]orizontal split on the [L]eft' })
+nmap("<C-A-l>", "<C-w>l", { desc = 'Move to the [H]orizontal split on the [R]ight' })
+nmap("<C-A-j>", "<C-w>j", { desc = 'Move to the [V]ertical split [D]own' })
+nmap("<C-A-k>", "<C-w>k", { desc = 'Move to the [V]ertical split [U]pp' })
 -- Recognize .ibis files as Python files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.ibis",
