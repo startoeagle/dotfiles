@@ -860,6 +860,8 @@ local servers = {
     python = {
       analysis = {
         typeCheckingMode = "on",
+        reportMissingTypeStubs = true,
+        diagnosticMode = "workspace",
       },
     },
   },
