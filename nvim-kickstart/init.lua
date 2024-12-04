@@ -306,7 +306,12 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  'github/copilot.vim',
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.cmd("Copilot disable")
+    end
+  },
 
   {
     "Olical/conjure",
