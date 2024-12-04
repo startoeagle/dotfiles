@@ -425,7 +425,7 @@ require('lazy').setup({
       vim.g.compile_mode = {
         baleia_setup = true,
       }
-      nmap("<leader>cm" , ":Compile<CR>", { desc = "[C]ompile [M]ode" })
+      nmap("<leader>cm", ":Compile<CR>", { desc = "[C]ompile [M]ode" })
     end
   },
   {
@@ -552,7 +552,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = 'split'
 
-vim.o.cursorline = true 
+vim.o.cursorline = true
 
 nmap("<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
 
@@ -833,16 +833,16 @@ end
 
 -- document existing key chains
 require('which-key').add {
-  { '<leader>c',  desc = '[C]ode, Copilot and Compilation' },
-  { '<leader>d',  desc = '[D]ocument' },
-  { '<leader>g',  desc = '[G]it' },
-  { '<leader>h',  desc = 'Git [H]unk and Harpoon' },
-  { '<leader>r',  desc = '[R]ename' },
-  { '<leader>s',  desc = '[S]earch' },
-  { '<leader>t',  desc = '[T]oggle' },
-  { '<leader>w',  desc = '[W]orkspace' },
-  { '<leader>o',  desc = '[O]il' },
-  { '<leader>b',  desc = '[V]ersion control' },
+  { '<leader>c', desc = '[C]ode, Copilot and Compilation' },
+  { '<leader>d', desc = '[D]ocument' },
+  { '<leader>g', desc = '[G]it' },
+  { '<leader>h', desc = 'Git [H]unk and Harpoon' },
+  { '<leader>r', desc = '[R]ename' },
+  { '<leader>s', desc = '[S]earch' },
+  { '<leader>t', desc = '[T]oggle' },
+  { '<leader>w', desc = '[W]orkspace' },
+  { '<leader>o', desc = '[O]il' },
+  { '<leader>b', desc = '[V]ersion control' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
