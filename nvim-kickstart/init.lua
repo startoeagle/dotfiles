@@ -312,6 +312,29 @@ require('lazy').setup({
       vim.cmd("Copilot disable")
     end
   },
+  -- {
+  --   {
+  --     "quarto-dev/quarto-nvim",
+  --     dependencies = {
+  --       "jmbuhr/otter.nvim",
+  --       "nvim-treesitter/nvim-treesitter",
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "benlubas/molten-nvim",
+  --   version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+  --   build = ":UpdateRemotePlugins",
+  --   dependencies = {'GCBallesteros/jupytext.nvim'},
+  --   config = function()
+  --     require("jupytext").setup({
+  --       style = "markdown",
+  --       output_extension = "md",
+  --       force_ft = "markdown",
+  --       require("quarto").activate()
+  --     })
+  --   end
+  -- },
 
   {
     "Olical/conjure",
