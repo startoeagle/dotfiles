@@ -60,7 +60,6 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   'tpope/vim-surround',
-
   {
     "brenton-leighton/multiple-cursors.nvim",
     version = "*", -- Use the latest tagged version
@@ -99,11 +98,21 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
       {
         "microsoft/python-type-stubs",
         cond = false
       }
+    },
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
     },
   },
 
@@ -128,6 +137,14 @@ require('lazy').setup({
 
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        completion = {
+          enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+        },
+        providers = {
+          -- dont show LuaLS require statements when lazydev has items
+          lsp = { fallback_for = { "lazydev" } },
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        }
       },
 
       -- experimental signature help support
@@ -836,19 +853,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
-    },
-  },
 }
-
--- Setup neovim lua configuration
-require('neodev').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
