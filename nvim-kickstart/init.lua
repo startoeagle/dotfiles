@@ -108,33 +108,35 @@ require('lazy').setup({
   },
 
   {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets
-          -- This step is not supported in many windows environments
-          -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
+    -- auto completion
+    'saghen/blink.cmp',
+    -- optional: provides snippets for the snippet source
+    -- uncomment for now
+    -- dependencies = 'rafamadriz/friendly-snippets',
+
+    version = 'v0.*',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = { preset = 'default' },
+
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
       },
-      'saadparwaiz1/cmp_luasnip',
 
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
 
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
+      -- experimental signature help support
+      signature = { enabled = true }
     },
+
+    -- allows extending the providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { "sources.default" },
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -311,25 +313,7 @@ require('lazy').setup({
   {
     "Olical/conjure",
     ft = { "clojure", "fennel", "python", "lua", "racket" }, -- etc
-    -- [Optional] cmp-conjure for cmp
-    dependencies = {
-      {
-        "PaterJason/cmp-conjure",
-        config = function()
-          local cmp = require("cmp")
-          local config = cmp.get_config()
-          table.insert(config.sources, {
-            name = "buffer",
-            option = {
-              sources = {
-                { name = "conjure" },
-              },
-            },
-          })
-          cmp.setup(config)
-        end,
-      },
-    },
+    dependencies = {},
     config = function(_, opts)
       require("conjure.main").main()
       require("conjure.mapping")["on-filetype"]()
@@ -420,7 +404,7 @@ require('lazy').setup({
       vim.g.compile_mode = {
         baleia_setup = true,
       }
-      nmap("<leader>cm" , ":Compile<CR>", { desc = "[C]ompile [M]ode" })
+      nmap("<leader>cm", ":Compile<CR>", { desc = "[C]ompile [M]ode" })
     end
   },
   {
@@ -812,16 +796,16 @@ end
 
 -- document existing key chains
 require('which-key').add {
-  { '<leader>c',  desc = '[C]ode, Copilot and Compilation' },
-  { '<leader>d',  desc = '[D]ocument' },
-  { '<leader>g',  desc = '[G]it' },
-  { '<leader>h',  desc = 'Git [H]unk and Harpoon' },
-  { '<leader>r',  desc = '[R]ename' },
-  { '<leader>s',  desc = '[S]earch' },
-  { '<leader>t',  desc = '[T]oggle' },
-  { '<leader>w',  desc = '[W]orkspace' },
-  { '<leader>o',  desc = '[O]il' },
-  { '<leader>b',  desc = '[V]ersion control' },
+  { '<leader>c', desc = '[C]ode, Copilot and Compilation' },
+  { '<leader>d', desc = '[D]ocument' },
+  { '<leader>g', desc = '[G]it' },
+  { '<leader>h', desc = 'Git [H]unk and Harpoon' },
+  { '<leader>r', desc = '[R]ename' },
+  { '<leader>s', desc = '[S]earch' },
+  { '<leader>t', desc = '[T]oggle' },
+  { '<leader>w', desc = '[W]orkspace' },
+  { '<leader>o', desc = '[O]il' },
+  { '<leader>b', desc = '[V]ersion control' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -866,9 +850,7 @@ local servers = {
 -- Setup neovim lua configuration
 require('neodev').setup()
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -885,6 +867,7 @@ mason_lspconfig.setup_handlers {
         return function() end
       end
     end
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
@@ -896,69 +879,6 @@ mason_lspconfig.setup_handlers {
 require 'lspconfig'.racket_langserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-}
-
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<M-Space>'] = cmp.mapping.complete {},
-    ['<C-y>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<C-j>'] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<C-k>'] = cmp.mapping(function(fallback)
-      if luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }),
-  cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  }),
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-    -- matching = { disallow_symbol_nonprefix_matching = false }
-  })
 }
 
 -- [[ Configure harpoon ]]
