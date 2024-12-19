@@ -325,8 +325,6 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  'github/copilot.vim',
-
   {
     "Olical/conjure",
     ft = { "clojure", "fennel", "python", "lua", "racket" }, -- etc
@@ -423,48 +421,6 @@ require('lazy').setup({
       }
       nmap("<leader>cm", ":Compile<CR>", { desc = "[C]ompile [M]ode" })
     end
-  },
-  {
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      branch = "canary",
-      dependencies = {
-        { "github/copilot.vim" },
-        { "nvim-lua/plenary.nvim" },
-      },
-      build = "make tiktoken",
-      opts = {
-        debug = false,
-      },
-      config = function()
-        local chat = require("CopilotChat")
-        chat.setup {}
-
-        local local_prefix = '<leader>cp'
-        local nmap_chat = function(keys, func, desc)
-          nmap(local_prefix .. keys, func, { desc = desc })
-        end
-
-        local map_chat = function(keys, func, desc)
-          nmap(local_prefix .. keys, func, { desc = desc })
-          vmap(local_prefix .. keys, func, { desc = desc })
-        end
-
-        nmap_chat('o', chat.open, '[O]pen chat')
-        nmap_chat('c', function() vim.cmd('CopilotChatCommitStaged') end, 'Suggest [C]ommit staged')
-        map_chat('t', function() vim.cmd('CopilotChatTests') end, '[T]est')
-        map_chat('e', function() vim.cmd('CopilotChatExplain') end, '[E]xplain')
-        map_chat('r', function() vim.cmd('CopilotChatReview') end, '[R]eview')
-        map_chat('fc', function() vim.cmd('CopilotChatFix') end, '[F]ix [C]ode')
-        map_chat('fd', function() vim.cmd('CopilotChatFix') end, '[F]ix [D]iagnostics')
-        nmap_chat('hr',
-          function()
-            local ns = vim.api.nvim_get_namespaces()['github-copilot']
-            vim.diagnostic.reset(ns, 0)
-          end,
-          'Hide review diagnostics for GitHub Copilot')
-      end,
-    },
   },
 
   {
@@ -813,7 +769,7 @@ end
 
 -- document existing key chains
 require('which-key').add {
-  { '<leader>c', desc = '[C]ode, Copilot and Compilation' },
+  { '<leader>c', desc = '[C]ode and Compilation' },
   { '<leader>d', desc = '[D]ocument' },
   { '<leader>g', desc = '[G]it' },
   { '<leader>h', desc = 'Git [H]unk and Harpoon' },
