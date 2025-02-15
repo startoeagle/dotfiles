@@ -136,15 +136,16 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-        },
+        default = { "lazydev", "lsp", "path", "snippets", "buffer", "dadbod" },
         providers = {
-          -- dont show LuaLS require statements when lazydev has items
-          lsp = { fallback_for = { "lazydev" } },
-          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
-        }
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        },
       },
 
       -- experimental signature help support
