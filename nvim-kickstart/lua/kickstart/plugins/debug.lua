@@ -66,7 +66,7 @@ return {
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
-        icons = {
+      icons = {
           pause = '⏸',
           play = '▶',
           step_into = '⏎',
@@ -87,7 +87,6 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
     vim.keymap.set('n', '<leader>du', dapui.toggle, { desc = '[D]ebug: [U]i.' })
-    vim.keymap.set('n', '<leader>dc', dapui.toggle, { desc = '[D]ebug: [c]lose UI.' })
 
     -- Install golang specific config
     require('dap-go').setup()
