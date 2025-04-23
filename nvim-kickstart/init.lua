@@ -347,7 +347,8 @@ require('lazy').setup({
 
   {
     "Olical/conjure",
-    ft = { "clojure", "fennel", "python", "lua", "racket" }, -- etc
+    ft = { "clojure", "fennel", "python", "lua", "racket", "rust" }, -- etc
+    branch = 'main',
     dependencies = {},
     config = function(_, opts)
       require("conjure.main").main()
@@ -948,4 +949,3 @@ nmap("[q", function() vim.cmd("cprevious") end, { desc = 'Previous quick fix ite
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
