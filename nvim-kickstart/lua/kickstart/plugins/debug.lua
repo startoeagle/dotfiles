@@ -97,6 +97,20 @@ return {
     vim.keymap.set('n', '<leader>du', dapui.toggle, { desc = '[D]ebug: [U]i.' })
 
     -- Install golang specific config
-    require('dap-go').setup()
+    local dapgo = require('dap-go')
+    dapgo.setup(
+      {
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Debug Package at different path",
+            args = dapgo.get_arguments,
+            request = "launch",
+            program = "${fileDirname}",
+            cwd = "/Users/anton.karlsson/repos/finance-algorithm-data-pipeline/", -- TODO: more generic dapgo.get_arguments,
+          },
+        },
+      }
+    )
   end,
 }
