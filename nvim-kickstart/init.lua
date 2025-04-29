@@ -830,6 +830,11 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  kotlin_language_server = {
+    jvm = {
+      target = "21"
+    }
+  }
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
