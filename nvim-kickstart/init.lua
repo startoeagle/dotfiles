@@ -551,6 +551,9 @@ nmap(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 nmap('<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 nmap('<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Tabs
+nmap("<leader>tq", vim.cmd.tabclose, { desc = "Close current tab" })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
