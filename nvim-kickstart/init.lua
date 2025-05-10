@@ -556,7 +556,6 @@ require('lazy').setup {
         },
 
         rust_analyzer = {},
-        tsserver = {},
         html = { filetypes = { 'html', 'twig', 'hbs' } },
         kotlin_language_server = {
           jvm = {
@@ -721,7 +720,7 @@ require('lazy').setup {
       },
 
       sources = {
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
