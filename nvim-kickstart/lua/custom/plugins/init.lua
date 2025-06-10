@@ -21,6 +21,8 @@ nmap('<M-l>', '<C-w><C-l>')
 -- swapfiles are evil
 vim.o.swapfile = false
 
+vim.lsp.enable 'gleam'
+
 return {
   {
     'Olical/conjure',
