@@ -141,6 +141,7 @@ return {
       nmap('<leader>tr', neotest.run.run, { desc = '[T]est [R]un' })
       nmap('<leader>ts', neotest.summary.toggle, { desc = '[T]est [S]ummary' })
       nmap('<leader>td', neotest.run.adapters, { desc = '[T]est [D]ebug' })
+      nmap('<leader>to', neotest.output_panel.toggle, { desc = '[T]est [O]utput' })
 
       -- [[ Configure NeoTree ]]
       local neotree = require 'neo-tree.command'
