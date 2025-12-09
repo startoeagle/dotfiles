@@ -120,5 +120,26 @@ return {
         args = { '-m', 'pytest', vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()) },
       },
     }
+    dap.configurations.python = {
+      {
+        name = 'Run pytest with lldb',
+        type = 'lldb',
+        request = 'launch',
+        program = 'python',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = { '-m', 'pytest', vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()) },
+      },
+    }
+    dap.configurations.odin = {
+      {
+        name = 'Run odin with lldb',
+        type = 'lldb',
+        request = 'launch',
+        program = '${fileDirname}',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = true,
+      },
+    }
   end,
 }
