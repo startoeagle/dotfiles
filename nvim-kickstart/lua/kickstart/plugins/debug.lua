@@ -102,7 +102,7 @@ return {
       type = 'server',
       port = '${port}',
       executable = {
-        command = '/Users/anton.karlsson/.local/share/nvim/mason/packages/codelldb/codelldb',
+        command = os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/codelldb/codelldb',
         args = { '--port', '${port}' },
         detached = vim.loop.os_uname().sysname ~= 'Windows',
       },
@@ -136,9 +136,11 @@ return {
         name = 'Run odin with lldb',
         type = 'lldb',
         request = 'launch',
-        program = '${fileDirname}',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
         cwd = '${workspaceFolder}',
-        stopOnEntry = true,
+        stopOnEntry = false,
       },
     }
   end,
