@@ -1,4 +1,3 @@
-vim.lsp.enable('luals')
 vim.lsp.config['luals'] = {
 	cmd = { 'lua-language-server' },
 	filetypes = { 'lua' },
@@ -43,3 +42,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', '<leader>h', vim.diagnostic.open_float)
 	end,
 })
+
+vim.lsp.enable('luals')
+vim.lsp.enable('pyright')
+vim.lsp.enable('pyrefly')

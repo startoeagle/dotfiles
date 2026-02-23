@@ -16,15 +16,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{
-			"nvim-treesitter/nvim-treesitter",
-			build = ":TSUpdate",
-		},
+		{ "neovim/nvim-lspconfig" },
+		{ "jake-stewart/multicursor.nvim",   branch = "1.0", },
+		{ 'nvim-mini/mini.pick',             version = '*',       opts = {} },
+		{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", },
 		{
 			"williamboman/mason.nvim",
-			config = function()
-				require('mason').setup()
-			end
+			config = function() require('mason').setup() end
 		},
 		{
 			"MironPascalCaseFan/debugmaster.nvim",
