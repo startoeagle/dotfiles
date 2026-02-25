@@ -16,6 +16,7 @@ return {
 			command = mason_ex('debugpy'),
 		}
 
+
 		dap.configurations.cpp = {
 			{
 				name = "Launch file",
@@ -29,9 +30,27 @@ return {
 			},
 		}
 
+
 		dap.configurations.odin = dap.configurations.cpp
 		dap.configurations.c = dap.configurations.cpp
 		dap.configurations.rust = dap.configurations.cpp
+
+		dap.adapters.kotlin = {
+			type = "executable",
+			command = "kotlin-debug-adapter",
+			options = { auto_continue_if_many_stopped = false },
+		}
+		dap.configurations.kotlin = {
+			{
+				name = "Launch script (MainKt)",
+				type = "kotlin",
+				request = "launch",
+				mainClass = "MainKt",
+				projectRoot = vim.fn.getcwd,
+				jsonLogFile = "",
+				enableJsonLogging = false,
+			}
+		}
 
 		require('dap-python').setup('uv')
 		require('dap-python').test_runner = 'pytest'
