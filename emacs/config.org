@@ -60,6 +60,13 @@
 #+RESULTS:
 : t
 
+* PDF
+#+begin_src elisp
+    (use-package pdf-tools)
+#+end_src
+
+#+RESULTS:
+
 * Making things easier to use
 #+begin_src elisp
   (use-package helpful
@@ -157,16 +164,6 @@ Exit with jk
 #+RESULTS:
 
 * org mode
-** Enable flyspell mode in org mode
-
-#+begin_src elisp
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'flyspell-buffer)
-#+end_src
-
-#+RESULTS:
-| flyspell-buffer | turn-on-flyspell | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] |
-
 ** Babel for org mode
 
 Do not ask if the code should be evaluated

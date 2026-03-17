@@ -42,6 +42,8 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(use-package pdf-tools)
+
 (use-package helpful
   :bind
     ("C-h f" . #'helpful-callable)
@@ -80,9 +82,6 @@
 (use-package sly)
 
 (use-package paredit)
-
-(add-hook 'org-mode-hook 'turn-on-flyspell)
-(add-hook 'org-mode-hook 'flyspell-buffer)
 
 (defun my-org-confirm-babel-evaluate (lang body)
  (not (string= lang "ditaa")))  ;don't ask for ditaa
