@@ -45,7 +45,7 @@ return {
 				name = "Launch script (MainKt)",
 				type = "kotlin",
 				request = "launch",
-				mainClass = "MainKt",
+				mainClass = "se.test.MainKt",
 				projectRoot = vim.fn.getcwd,
 				jsonLogFile = "",
 				enableJsonLogging = false,
