@@ -2,6 +2,7 @@
   "debugmaster.nvim": { "branch": "main", "commit": "505d9a269d657ce8e0fa5601e0530f0d8798038c" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
   "mason.nvim": { "branch": "main", "commit": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65" },
+  "mini.diff": { "branch": "main", "commit": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e" },
   "mini.pick": { "branch": "main", "commit": "6b7974543b17cf2e294993fc3d8545a342258232" },
   "multicursor.nvim": { "branch": "1.0", "commit": "630dd29dd696bc977cb81d7dd2fa6bb280f60fc4" },
   "nvim-dap": { "branch": "master", "commit": "db321947bb289a2d4d76a32e76e4d2bd6103d7df" },
