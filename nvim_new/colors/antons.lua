@@ -29,4 +29,4 @@ vim.api.nvim_set_hl(0, '@punctuation.special', { fg = '#ddeeee', bg = bgcolor })
 vim.api.nvim_set_hl(0, 'String', { fg = '#00ffaa', bg = bgcolor })
 vim.api.nvim_set_hl(0, '@string', { link = 'String' })
 
-vim.api.nvim_set_hl(0, 'Constant', { fg = '#00FFFF', bg = bgcolor })
+vim.api.nvim_set_hl(0, 'Constant', { fg = '#9876aa', bg = bgcolor })
