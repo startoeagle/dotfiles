@@ -6,7 +6,7 @@ vim.opt.cursorline = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.winborder = 'rounded'
 vim.opt.completeopt = 'menu,fuzzy,noinsert'
 vim.opt.lcs = vim.opt.lcs + 'space:•'
@@ -29,7 +29,7 @@ vim.api.nvim_set_hl(0, "debugPC", { bg = "#FF2C2C" })
 local set = vim.keymap.set
 
 function leadermap(suffix, rhs, desc)
-	set('n', '<leader>' .. suffix, rhs, { desc = desc })
+    set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
 
 leadermap('ff', function() vim.cmd('Pick files') end)
@@ -41,9 +41,9 @@ leadermap('fl', function() vim.cmd('Pick buf_lines') end)
 
 --- maybe add in python ftplugin
 require('debugmaster').keys.add({
-	key = "<CR>",
-	action = require('dap-python').test_method,
-	desc = "Jump to the current stack frame"
+    key = "<CR>",
+    action = require('dap-python').test_method,
+    desc = "Jump to the current stack frame"
 })
 
 local mc = require("multicursor-nvim")
@@ -77,21 +77,21 @@ set({ "n", "x" }, "<c-q>", mc.toggleCursor)
 -- Mappings defined in a keymap layer only apply when there are
 -- multiple cursors. This lets you have overlapping mappings.
 mc.addKeymapLayer(function(layerSet)
-	-- Select a different cursor as the main one.
-	layerSet({ "n", "x" }, "<left>", mc.prevCursor)
-	layerSet({ "n", "x" }, "<right>", mc.nextCursor)
+    -- Select a different cursor as the main one.
+    layerSet({ "n", "x" }, "<left>", mc.prevCursor)
+    layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
-	-- Delete the main cursor.
-	layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+    -- Delete the main cursor.
+    layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
 
-	-- Enable and clear cursors using escape.
-	layerSet("n", "<esc>", function()
-		if not mc.cursorsEnabled() then
-			mc.enableCursors()
-		else
-			mc.clearCursors()
-		end
-	end)
+    -- Enable and clear cursors using escape.
+    layerSet("n", "<esc>", function()
+        if not mc.cursorsEnabled() then
+            mc.enableCursors()
+        else
+            mc.clearCursors()
+        end
+    end)
 end)
 
 -- Customize how cursors look.
