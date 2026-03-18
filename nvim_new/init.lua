@@ -29,7 +29,7 @@ vim.api.nvim_set_hl(0, "debugPC", { bg = "#FF2C2C" })
 
 local set = vim.keymap.set
 
-function leadermap(suffix, rhs, desc)
+local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
 
