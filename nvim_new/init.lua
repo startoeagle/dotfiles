@@ -1,16 +1,17 @@
-vim.opt.swapfile = false
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes'
-vim.opt.cursorline = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.winborder = 'rounded'
-vim.opt.completeopt = 'menu,fuzzy,noinsert'
-vim.opt.lcs = vim.opt.lcs + 'space:•'
-vim.opt.list = true
+local opt = vim.opt
+opt.swapfile = false
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = 'yes'
+opt.cursorline = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.winborder = 'rounded'
+opt.completeopt = 'menu,fuzzy,noinsert'
+opt.lcs = opt.lcs + 'space:•'
+opt.list = true
 vim.cmd.colorscheme('antons')
 
 vim.g.mapleader = ' '
@@ -65,7 +66,7 @@ set({ "n", "x" }, "<leader>n", function() mc.matchAddCursor(1) end)
 set({ "n", "x" }, "<leader>s", function() mc.matchSkipCursor(1) end)
 set({ "n", "x" }, "<leader>N", function() mc.matchAddCursor(-1) end)
 set({ "n", "x" }, "<leader>S", function() mc.matchSkipCursor(-1) end)
-
+set({ "n", "v" }, "<leader>A", mc.matchAllAddCursors)
 -- Add and remove cursors with control + left click.
 set("n", "<c-leftmouse>", mc.handleMouse)
 set("n", "<c-leftdrag>", mc.handleMouseDrag)
