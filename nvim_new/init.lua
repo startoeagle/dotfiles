@@ -11,7 +11,7 @@ vim.opt.winborder = 'rounded'
 vim.opt.completeopt = 'menu,fuzzy,noinsert'
 vim.opt.lcs = vim.opt.lcs + 'space:•'
 vim.opt.list = true
-vim.cmd.colorscheme('default')
+vim.cmd.colorscheme('antons')
 
 vim.g.mapleader = ' '
 vim.g.localleader = ' '
