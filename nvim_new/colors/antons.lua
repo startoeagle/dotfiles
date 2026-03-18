@@ -1,7 +1,7 @@
 vim.cmd.hi 'clear'
 
 vim.o.termguicolors = true
-local bgcolor = '#303030'
+local bgcolor = '#1e1e1e'
 vim.cmd('hi Normal guibg=' .. bgcolor)
 
 vim.api.nvim_set_hl(0, 'Comment', { fg = '#ffaa00', bg = bgcolor })
