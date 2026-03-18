@@ -20,6 +20,7 @@ require("lazy").setup({
 		{ "jake-stewart/multicursor.nvim",   branch = "1.0", },
 		{ 'nvim-mini/mini.pick',             version = '*',       opts = {} },
 		{ 'nvim-mini/mini.diff',             version = '*',       opts = {} },
+		{ 'nvim-mini/mini.extra',            version = '*',       opts = {} },
 		{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", },
 		{
 			"williamboman/mason.nvim",
