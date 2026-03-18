@@ -8,7 +8,6 @@ vim.api.nvim_set_hl(0, 'Comment', { fg = '#ffaa00', bg = bgcolor })
 vim.api.nvim_set_hl(0, '@comment', { link = 'Comment' })
 vim.api.nvim_set_hl(0, '@comment.documentation', { link = 'Comment' })
 vim.api.nvim_set_hl(0, '@lsp.type.comment', { link = 'Comment' })
--- vim.api.nvim_set_hl(0, 'TermCursor', { link = 'Comment' })
 
 vim.api.nvim_set_hl(0, '@function', { fg = '#00aaff', bg = bgcolor })
 vim.api.nvim_set_hl(0, '@function.call', { fg = '#00aaff', bg = bgcolor })
