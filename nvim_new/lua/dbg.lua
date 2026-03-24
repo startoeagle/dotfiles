@@ -1,60 +1,60 @@
 local function mason_ex(executable_str)
-	local path = vim.fn.stdpath("data") .. "/mason/bin/"
-	return path .. executable_str
+    local path = vim.fn.stdpath("data") .. "/mason/bin/"
+    return path .. executable_str
 end
 
 return {
-	setup = function()
-		local dap = require('dap')
-		dap.adapters.codelldb = {
-			type = "executable",
-			command = mason_ex("codelldb")
-		}
+    setup = function()
+        local dap = require('dap')
+        dap.adapters.codelldb = {
+            type = "executable",
+            command = mason_ex("codelldb")
+        }
 
-		dap.adapters.debugpy = {
-			type = 'executable',
-			command = mason_ex('debugpy'),
-		}
-
-
-		dap.configurations.cpp = {
-			{
-				name = "Launch file",
-				type = "codelldb",
-				request = "launch",
-				program = function()
-					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-				end,
-				cwd = '${workspaceFolder}',
-				stopOnEntry = false,
-			},
-		}
+        dap.adapters.debugpy = {
+            type = 'executable',
+            command = mason_ex('debugpy'),
+        }
 
 
-		dap.configurations.odin = dap.configurations.cpp
-		dap.configurations.c = dap.configurations.cpp
-		dap.configurations.rust = dap.configurations.cpp
+        dap.configurations.cpp = {
+            {
+                name = "Launch file",
+                type = "codelldb",
+                request = "launch",
+                program = function()
+                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+            },
+        }
 
-		dap.adapters.kotlin = {
-			type = "executable",
-			command = "kotlin-debug-adapter",
-			options = { auto_continue_if_many_stopped = false },
-		}
-		dap.configurations.kotlin = {
-			{
-				name = "Launch script (MainKt)",
-				type = "kotlin",
-				request = "launch",
-				mainClass = "se.test.MainKt",
-				projectRoot = vim.fn.getcwd,
-				jsonLogFile = "",
-				enableJsonLogging = false,
-			}
-		}
 
-		require('dap-python').setup('uv')
-		require('dap-python').test_runner = 'pytest'
+        dap.configurations.odin = dap.configurations.cpp
+        dap.configurations.c = dap.configurations.cpp
+        dap.configurations.rust = dap.configurations.cpp
 
-		vim.keymap.set('n', '<leader>kt', require('dap-python').test_method)
-	end
+        dap.adapters.kotlin = {
+            type = "executable",
+            command = "kotlin-debug-adapter",
+            options = { auto_continue_if_many_stopped = false },
+        }
+        dap.configurations.kotlin = {
+            {
+                name = "Launch script (MainKt)",
+                type = "kotlin",
+                request = "launch",
+                mainClass = "se.test.MainKt",
+                projectRoot = vim.fn.getcwd,
+                jsonLogFile = "",
+                enableJsonLogging = false,
+            }
+        }
+
+        require('dap-python').setup('uv')
+        require('dap-python').test_runner = 'pytest'
+
+        vim.keymap.set('n', '<leader>kt', require('dap-python').test_method)
+    end
 }
