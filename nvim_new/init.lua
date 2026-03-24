@@ -82,6 +82,7 @@ mc.addKeymapLayer(function(layerSet)
     layerSet({ "n", "x" }, "<left>", mc.prevCursor)
     layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
+    layerSet({ "x" }, "&", mc.alignCursors)
     -- Delete the main cursor.
     layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
 
