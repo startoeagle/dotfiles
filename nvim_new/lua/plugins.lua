@@ -39,5 +39,20 @@ require("lazy").setup({
                 dm.plugins.osv_integration.enabled = true -- needed if you want to debug neovim lua code
             end
         },
+        {
+            "NeogitOrg/neogit",
+            lazy = true,
+            dependencies = {
+                "nvim-lua/plenary.nvim", -- required
+
+                -- Only one of these is needed.
+                "sindrets/diffview.nvim", -- optional
+                -- "esmuellert/codediff.nvim", -- optional
+            },
+            cmd = "Neogit",
+            keys = {
+                { "<leader>v", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+            }
+        }
     },
 })
