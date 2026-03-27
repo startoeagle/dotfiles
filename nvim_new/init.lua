@@ -39,14 +39,6 @@ leadermap('fh', function() vim.cmd('Pick help') end)
 leadermap('fg', function() vim.cmd('Pick grep_live') end)
 leadermap('fl', function() vim.cmd('Pick buf_lines') end)
 
-
---- maybe add in python ftplugin
-require('debugmaster').keys.add({
-    key = "<CR>",
-    action = require('dap-python').test_method,
-    desc = "Jump to the current stack frame"
-})
-
 local mc = require("multicursor-nvim")
 mc.setup()
 
@@ -111,4 +103,5 @@ set("x", "S", mc.splitCursors)
 
 
 -- version control with jjui
+-- TODO: Add some better buffer reuse. Currently we are adding a new one for each shortcut command
 leadermap("v", function() vim.cmd 'edit term://jjui' end, "Start jjui")
