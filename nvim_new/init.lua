@@ -108,3 +108,7 @@ hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
 
 -- Split visual selections by regex.
 set("x", "S", mc.splitCursors)
+
+
+-- version control with jjui
+set("n", "<leader>v", function () vim.cmd 'edit term://jjui' end, {desc = "Start jjui"})

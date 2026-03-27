@@ -47,12 +47,8 @@ require("lazy").setup({
 
                 -- Only one of these is needed.
                 "sindrets/diffview.nvim", -- optional
-                -- "esmuellert/codediff.nvim", -- optional
             },
             cmd = "Neogit",
-            keys = {
-                { "<leader>v", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
-            }
         }
     },
 })
