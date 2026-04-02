@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
+        { "dchinmay2/alabaster.nvim" },
         { "neovim/nvim-lspconfig" },
         { "jake-stewart/multicursor.nvim",   branch = "1.0", },
         { 'nvim-mini/mini.pick',             version = '*',       opts = {} },
