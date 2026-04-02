@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.enable('luals')
-vim.lsp.enable('pyright')
-vim.lsp.enable('pyrefly')
+vim.lsp.enable('ty')
+vim.lsp.enable('ruff')
 vim.lsp.enable('gleam')
 vim.lsp.enable('kotlin_lsp')
