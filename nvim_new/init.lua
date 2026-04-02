@@ -101,7 +101,4 @@ hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
 -- Split visual selections by regex.
 set("x", "S", mc.splitCursors)
 
-
--- version control with jjui
--- TODO: Add some better buffer reuse. Currently we are adding a new one for each shortcut command
-leadermap("v", function() vim.cmd 'edit term://jjui' end, "Start jjui")
+leadermap("v", require('jj').open, "Start jjui")
