@@ -34,7 +34,15 @@ require("lazy").setup({
             dependencies = { "mfussenegger/nvim-dap", "jbyuki/one-small-step-for-vimkind", 'mfussenegger/nvim-dap-python' },
             config = function()
                 local dm = require("debugmaster")
-                vim.keymap.set({ "n", "v" }, "<leader>d", dm.mode.toggle, { nowait = true })
+                vim.keymap.set({ "n", "v" }, "<leader>d", function()
+                    dm.mode.toggle()
+                    local mode = require("debugmaster.debug.mode")
+                    if mode.is_active() then
+                        print('Enabling debugmaster mode')
+                    else
+                        print('Disabling debugmaster mode')
+                    end
+                end, { nowait = true })
                 vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
                 dm.plugins.osv_integration.enabled = true -- needed if you want to debug neovim lua code
