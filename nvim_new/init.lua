@@ -33,11 +33,12 @@ local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
 
-leadermap('ff', function() vim.cmd('Pick files') end)
-leadermap('fb', function() vim.cmd('Pick buffers') end)
-leadermap('fh', function() vim.cmd('Pick help') end)
-leadermap('fg', function() vim.cmd('Pick grep_live') end)
-leadermap('fl', function() vim.cmd('Pick buf_lines') end)
+leadermap('ff', function() vim.cmd('Pick files') end, "Pick files")
+leadermap('fb', function() vim.cmd('Pick buffers') end, "Pick buffers")
+leadermap('fh', function() vim.cmd('Pick help') end, "Pick help")
+leadermap('fg', function() vim.cmd('Pick grep_live') end, "Pick grep_live")
+leadermap('fl', function() vim.cmd('Pick buf_lines') end, "Pick buf_lines")
+leadermap('fk', function() vim.cmd('Pick keymaps') end, "Pick keymaps")
 
 local mc = require("multicursor-nvim")
 mc.setup()
