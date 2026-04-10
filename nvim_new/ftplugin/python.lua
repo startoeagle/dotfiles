@@ -2,6 +2,26 @@ local set = vim.keymap.set
 
 set('n', '<leader>kr', function() vim.cmd 'edit term://uv run python %' end,
     { buf = 0, desc = 'Run current file with uv' })
+set('n', '<leader>kR', function()
+        local pargs = require('python').previous_args
+        local prompt = "Additional args: "
+        if pargs ~= '' then
+            prompt = "Additional args (previous '" .. pargs .. "'): "
+        else
+            prompt = "Additional args: "
+        end
+        local args = vim.fn.input({ prompt = prompt, cancelreturn = nil })
+        if args == nil then
+            return
+        end
+        if args == "" then
+            args = pargs
+        else
+            require('python').previous_args = args
+        end
+        vim.cmd('edit term://uv run python % ' .. args)
+    end,
+    { buf = 0, desc = 'Run current file with uv' })
 set('n', '<leader>kt', function() vim.cmd 'edit term://uv run pytest -vv %' end,
     { buf = 0, desc = 'Run current file with pytest via uv' })
 
