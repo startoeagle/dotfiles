@@ -1,16 +1,24 @@
 #!/usr/bin/env fish
 
-set selected_proj (ls ~/repos | fzf )
-set is_in_session (tmux list-sessions | grep '(attached)' | sed 's/^\(.*\): .*/\1/')
-set session_exist (tmux list-sessions | grep $selected_proj)
+# TODO: This logic in not quite right
+#       we are still creating new session with the previous on
+#       that is, we are not detaching correctly
 
-if test -z $session_exist
-        tmux new -d -s $selected_proj -c "$HOME/repos/$selected_proj"
+set selected_dir (ls ~/repos | fzf )
+set selected_proj (string sub --length 24 $selected_dir)
+set session_exist (zellij ls | grep $selected_proj)
+set is_in_session (zellij ls | grep '(current)' | awk '{print $1}')
+
+if test '' != "$is_in_session"
+    echo "Detach session ($is_in_session)"
+    zellij action detach
 end
 
-if test -z $is_in_session
-        set proj_with_path "$HOME/repos/$selected_proj"
-        tmux attach-session -t $selected_proj
+if test -z "$session_exist"
+    echo "Creating new session ($selected_proj)"
+    pushd "$HOME/repos/$selected_dir"
+    zellij -s $selected_proj
 else
-        tmux switchc -t $selected_proj
+    echo "Attach to existing session ($selected_proj)"
+    zellij attach $selected_proj
 end
