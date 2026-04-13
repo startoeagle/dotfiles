@@ -7,24 +7,23 @@ local function create_and_insert_buf(cmd)
     return buf
 end
 
-function M.create_term_buf(buf, cmd)
+M.bufs = {}
+
+function M.create_term_buf(cmd)
     return function()
-        if buf == nil then
-            buf = create_and_insert_buf(cmd)
+        if M.bufs[cmd] == nil then
+            M.bufs[cmd] = create_and_insert_buf(cmd)
         else
-            local res = pcall(function() vim.api.nvim_set_current_buf(buf) end)
+            local res = pcall(function() vim.api.nvim_set_current_buf(M.bufs[cmd]) end)
             if not res then
-                buf = create_and_insert_buf(cmd)
+                M.bufs[cmd] = create_and_insert_buf(cmd)
             end
         end
         vim.cmd 'startinsert'
     end
 end
 
-M.fish_buf = nil
-M.fish = M.create_term_buf(M.fish_buf, 'edit term://fish')
-
-M.jj_buf = nil
-M.jjui = M.create_term_buf(M.jj_buf, 'edit term://jjui')
+M.fish = M.create_term_buf('edit term://fish')
+M.jjui = M.create_term_buf('edit term://jjui')
 
 return M
