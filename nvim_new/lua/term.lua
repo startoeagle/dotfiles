@@ -1,22 +1,23 @@
 M = {}
 
-local function create_and_insert_buf(buf, cmd)
-    buf = vim.api.nvim_create_buf(true, false)
+local function create_and_insert_buf(cmd)
+    local buf = vim.api.nvim_create_buf(true, false)
     vim.api.nvim_set_current_buf(buf)
     vim.cmd(cmd)
-    vim.cmd 'startinsert'
+    return buf
 end
 
 function M.create_term_buf(buf, cmd)
     return function()
         if buf == nil then
-            create_and_insert_buf(buf, cmd)
+            buf = create_and_insert_buf(cmd)
         else
             local res = pcall(function() vim.api.nvim_set_current_buf(buf) end)
             if not res then
-                create_and_insert_buf(buf, cmd)
+                buf = create_and_insert_buf(cmd)
             end
         end
+        vim.cmd 'startinsert'
     end
 end
 
