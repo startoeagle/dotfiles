@@ -17,8 +17,12 @@ end
 if test -z "$session_exist"
     echo "Creating new session ($selected_proj)"
     pushd "$HOME/repos/$selected_dir"
-    zellij -s $selected_proj
-else
-    echo "Attach to existing session ($selected_proj)"
-    zellij attach $selected_proj
+        zellij attach --create-background $selected_proj
+    popd
 end
+
+if test -z (echo $session_exist | grep 'attach to resurrect')
+    echo "need to delete session ($selected_proj)"
+end
+
+zellij attach $selected_proj
