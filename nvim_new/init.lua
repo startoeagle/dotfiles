@@ -102,4 +102,5 @@ hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
 -- Split visual selections by regex.
 set("x", "S", mc.splitCursors)
 
-leadermap("v", require('jj').open, "Start jjui")
+leadermap("v", require('term').jjui, "Start jjui")
+leadermap("t", require('term').fish, "Start fish")
