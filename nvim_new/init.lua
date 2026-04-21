@@ -104,3 +104,8 @@ set("x", "S", mc.splitCursors)
 
 leadermap("v", require('term').jjui, "Start jjui")
 leadermap("t", require('term').fish, "Start fish")
+
+
+vim.treesitter.language.add('org',
+    { path = "/Users/anton.karlsson/tree-sitter-extra/tree-sitter-org/org.dylib" })
+vim.treesitter.language.register('org', 'org')
