@@ -29,9 +29,15 @@ vim.api.nvim_set_hl(0, "debugPC", { bg = "#FF2C2C" })
 
 local set = vim.keymap.set
 
+set('i', '<c-å>', '<c-[>', { desc = 'Exit insert mode' })
+set('n', '<c-ö>', ':', { desc = 'Start command mode' })
+
 local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
+
+leadermap('y', '"+y', "Yank to clipboard")
+leadermap('p', '"+p', "Paste from clipboard")
 
 leadermap('ff', function() vim.cmd('Pick files') end, "Pick files")
 leadermap('fb', function() vim.cmd('Pick buffers') end, "Pick buffers")
