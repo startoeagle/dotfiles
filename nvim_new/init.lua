@@ -12,8 +12,8 @@ opt.winborder = 'rounded'
 opt.completeopt = 'menu,fuzzy,noinsert'
 opt.lcs = opt.lcs + 'space:•'
 opt.list = true
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.cmd.colorscheme('antons')
-
 vim.g.mapleader = ' '
 vim.g.localleader = ' '
 
@@ -36,8 +36,8 @@ local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
 
-leadermap('y', '"+y', "Yank to clipboard")
-leadermap('p', '"+p', "Paste from clipboard")
+set({ 'n', 'v' }, 'y', '"+y', { desc = "Yank to clipboard" })
+set({ 'n', 'v' }, 'p', '"+p', { desc = "Paste from clipboard" })
 
 leadermap('ff', function() vim.cmd('Pick files') end, "Pick files")
 leadermap('fb', function() vim.cmd('Pick buffers') end, "Pick buffers")
