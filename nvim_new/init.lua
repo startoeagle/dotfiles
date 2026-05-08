@@ -30,7 +30,7 @@ vim.api.nvim_set_hl(0, "debugPC", { bg = "#FF2C2C" })
 local set = vim.keymap.set
 
 set('i', '<c-å>', '<c-[>', { desc = 'Exit insert mode' })
-set('n', '<c-ö>', ':', { desc = 'Start command mode' })
+set('n', 'Ö', ':', { desc = 'Start command mode' })
 
 local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
