@@ -45,6 +45,7 @@ leadermap('fh', function() vim.cmd('Pick help') end, "Pick help")
 leadermap('fg', function() vim.cmd('Pick grep_live') end, "Pick grep_live")
 leadermap('fl', function() vim.cmd('Pick buf_lines') end, "Pick buf_lines")
 leadermap('fk', function() vim.cmd('Pick keymaps') end, "Pick keymaps")
+leadermap('fs', function() vim.cmd('Pick lsp scope=\'workspace_symbol\'') end, "Pick LSP symbols")
 
 local mc = require("multicursor-nvim")
 mc.setup()
