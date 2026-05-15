@@ -11,7 +11,7 @@ local function split()
     local linenr = '\' ' .. tostring(vim.fn.getcurpos()[2]) .. ': \''
     local revset = vim.fn.system('jj file annotate ' .. vim.fn.expand('%') .. ' | grep ' .. linenr .. ' | awk \'{print $1}\'')
     vim.cmd('split')
-    local cmd = 'jj show --no-pager' .. revset
+    local cmd = 'jj show --no-pager ' .. revset
     vim.cmd('edit term://' .. cmd)
 end
 
