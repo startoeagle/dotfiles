@@ -28,8 +28,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         if not client:supports_method('textDocument/willSaveWaitUntil')
             and client:supports_method('textDocument/formatting') then
-            vim.keymap.set('n', 'grf', vim.lsp.buf.format, { desc = 'Format buffer'})
-            vim.keymap.set('v', 'grf', vim.lsp.buf.format, { desc = 'Format buffer'})
+            vim.keymap.set('n', 'grf', vim.lsp.buf.format, { desc = 'Format buffer' })
+            vim.keymap.set('v', 'grf', vim.lsp.buf.format, { desc = 'Format buffer' })
         end
         vim.keymap.set('n', '<leader>h', vim.diagnostic.open_float)
     end,
