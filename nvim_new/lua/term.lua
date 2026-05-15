@@ -7,6 +7,14 @@ local function create_and_insert_buf(cmd)
     return buf
 end
 
+local function split()
+    local linenr = '\' ' .. tostring(vim.fn.getcurpos()[2]) .. ': \''
+    local revset = vim.fn.system('jj file annotate ' .. vim.fn.expand('%') .. ' | grep ' .. linenr .. ' | awk \'{print $1}\'')
+    vim.cmd('split')
+    local cmd = 'jj show --no-pager' .. revset
+    vim.cmd('edit term://' .. cmd)
+end
+
 M.bufs = {}
 
 function M.create_term_buf(cmd)
@@ -25,5 +33,6 @@ end
 
 M.fish = M.create_term_buf('edit term://fish')
 M.jjui = M.create_term_buf('edit term://jjui')
+M.jj_annotate_line = function() split() end
 
 return M
