@@ -12,6 +12,8 @@ opt.winborder = 'rounded'
 opt.completeopt = 'menu,fuzzy,noinsert'
 opt.lcs = opt.lcs + 'space:•'
 opt.list = true
+opt.ignorecase = true
+opt.smartcase = true
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.cmd.colorscheme('antons')
 vim.g.mapleader = ' '
