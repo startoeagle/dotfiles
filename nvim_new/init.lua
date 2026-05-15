@@ -38,9 +38,6 @@ local function leadermap(suffix, rhs, desc)
     set('n', '<leader>' .. suffix, rhs, { desc = desc })
 end
 
-set({ 'n', 'v' }, 'y', '"+y', { desc = "Yank to clipboard" })
-set({ 'n', 'v' }, 'p', '"+p', { desc = "Paste from clipboard" })
-
 leadermap('ff', function() vim.cmd('Pick files') end, "Pick files")
 leadermap('fb', function() vim.cmd('Pick buffers') end, "Pick buffers")
 leadermap('fh', function() vim.cmd('Pick help') end, "Pick help")
